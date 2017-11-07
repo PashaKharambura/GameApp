@@ -11,7 +11,6 @@ import GameplayKit
 
 class GameScene: SKScene {
     
-//    var dotsNodes = [SKShapeNode]()
     var board: Board!
     
     var delta = CGFloat()
@@ -19,7 +18,7 @@ class GameScene: SKScene {
     var startY = CGFloat()
     
     override func didMove(to view: SKView) {
-        board = Board(levelString: Levels.lvl1)
+        board = Board(levelString: Levels.lvl2)
         generateLevelBackground()
     }
     
@@ -36,20 +35,7 @@ class GameScene: SKScene {
         biggerDotNode.addChild(dotNode)
         
         addChild(biggerDotNode)
-//        dotsNodes.append(dotNode)
     }
-//
-//    func createDots() {
-//        let delta = ((scene?.frame.maxX)!)/10
-//        let startX: CGFloat = delta/2
-//        let startY = (scene?.frame.midY)! - 5 * delta
-//
-//        for x in 0..<10 {
-//            for y in 0..<10 {
-//                createDot(at: CGPoint(x: startX + delta * CGFloat(x), y: startY + delta * CGFloat(y)))
-//            }
-//        }
-//    }
     
     func createBorder() {
         
@@ -73,14 +59,11 @@ class GameScene: SKScene {
                 }
             }
             
-//            if char == "*" {
-//                createDot(at: CGPoint(x: startX + delta * col, y: startY + delta * row))
-//            }
         }
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        print((atPoint((touches.first?.location(in: self))!) as? SKShapeNode)?.fillColor)
+
         if let touch = touches.first {
             let obj = atPoint(touch.location(in: self))
             if obj.children.count == 1 {
