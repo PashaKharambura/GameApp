@@ -62,12 +62,9 @@ class Board: NSObject {
         for char in levelString {
             var elementType: Dot.DotType
             switch char {
-            case "*": elementType = .border
-            print("border")
-            case ".": elementType = .outside
-            print("outside")
-            default: elementType = .inside
-            print("inside")
+                case "*": elementType = .border
+                case ".": elementType = .outside
+                default: elementType = .inside
             }
             dots.append(Dot(type: elementType, index: dots.count))
         }
@@ -92,21 +89,15 @@ class Board: NSObject {
         let sameTypeDots = dots.filter { $0.type == dot.type && $0.connections == 0 && $0 != dot }
         
         let sortedDots = sameTypeDots.sorted { (first, second) -> Bool in
-//            let firstColumn = first.get2DCoordinates().column - dot.get2DCoordinates().column
+
+            let firstSum = abs(first.get2DCoordinates().column - dot.get2DCoordinates().column) + abs(first.get2DCoordinates().row - dot.get2DCoordinates().row)
             
+            let secondSum = abs(second.get2DCoordinates().column - dot.get2DCoordinates().column) + abs(second.get2DCoordinates().row - dot.get2DCoordinates().row)
             
-            
+            return firstSum < secondSum
         }
         
-        var resultDot = sameTypeDots.first
-//        var minDisnance = 1000
-//        for sameTypeDot in sameTypeDots {
-//            let distanceTo = sameTypeDot.index - dot.index
-//            if distanceTo < minDisnance {
-//                resultDot = sameTypeDot
-//                minDisnance = distanceTo
-//            }
-//        }
+        let resultDot = sortedDots.first
         
         return resultDot
     }
