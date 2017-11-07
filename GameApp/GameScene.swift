@@ -21,6 +21,7 @@ class GameScene: SKScene {
     override func didMove(to view: SKView) {
         board = Board(levelString: Levels.lvl1)
         generateLevelBackground()
+        createBorder()
     }
     
     func createDot(at position: CGPoint, and color: UIColor) {
@@ -52,7 +53,21 @@ class GameScene: SKScene {
 //    }
     
     func createBorder() {
-        
+        for line in board.borderLine {
+            let path = CGMutablePath()
+            let firstDotCoordinates = line.fromDot.get2DCoordinates()
+            path.move(to: position(for: firstDotCoordinates.column, and: firstDotCoordinates.row))
+            
+            let secondDotCoordinates = line.toDot.get2DCoordinates()
+            path.addLine(to: position(for: secondDotCoordinates.column, and: secondDotCoordinates.row))
+         
+            let lineNode = SKShapeNode(path: path)
+            lineNode.fillColor = .black
+            lineNode.strokeColor = .black
+            lineNode.lineWidth = 4
+            addChild(lineNode)
+        }
+        print("lines = ", board.borderLine.count)
     }
     
     func generateLevelBackground() {
@@ -69,7 +84,7 @@ class GameScene: SKScene {
                     } else {
                         color = .gray
                     }
-                    createDot(at: CGPoint(x: startX + delta * CGFloat(colNumber), y: startY + delta * CGFloat(rowNumber)), and: color)
+                    createDot(at: position(for: colNumber, and: rowNumber), and: color)
                 }
             }
             
@@ -77,6 +92,10 @@ class GameScene: SKScene {
 //                createDot(at: CGPoint(x: startX + delta * col, y: startY + delta * row))
 //            }
         }
+    }
+    
+    func position(for column: Int, and row: Int) -> CGPoint {
+        return CGPoint(x: startX + delta * CGFloat(column), y: startY + delta * CGFloat(row))
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

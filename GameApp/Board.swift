@@ -8,7 +8,7 @@
 
 import UIKit
 
-class Dot {
+class Dot: NSObject {
     enum DotType: Int {
         case border = 0
         case inside
@@ -17,9 +17,29 @@ class Dot {
     
     var type: DotType
     var active = true
+    var connections = 0
+    var index: Int
     
-    init(type: DotType) {
+    init(type: DotType, index: Int) {
         self.type = type
+        self.index = index
+    }
+    
+    func get2DCoordinates() -> (row: Int, column: Int) {
+        let row = index / 12
+        let column = index % 12
+        return (row, column)
+    }
+    
+}
+
+class Line: NSObject {
+    var fromDot: Dot
+    var toDot: Dot
+    
+    init(fromDot: Dot, toDot: Dot) {
+        self.fromDot = fromDot
+        self.toDot = toDot
     }
     
 }
@@ -30,20 +50,65 @@ class Board: NSObject {
     static let height = 12
     
     private var dots = [Dot]()
+    var borderLine = [Line]()
     
     init(levelString: String) {
+        super.init()
+        createDotsArray(from: levelString)
+        createBorderLine()
+    }
+    
+    func createDotsArray(from levelString: String) {
         for char in levelString {
-            var element: Dot
+            var elementType: Dot.DotType
             switch char {
-            case "*": element = Dot(type: .border)
-                print("border")
-            case ".": element = Dot(type: .outside)
-                print("outside")
-            default: element = Dot(type: .inside)
-                print("inside")
+            case "*": elementType = .border
+            print("border")
+            case ".": elementType = .outside
+            print("outside")
+            default: elementType = .inside
+            print("inside")
             }
-            dots.append(element)
+            dots.append(Dot(type: elementType, index: dots.count))
         }
+    }
+    
+    func createBorderLine() {
+        let borderDots = dots.filter { $0.type == .border }
+        for borderDot in borderDots {
+            if let dotToConnect = findClosestDot(to: borderDot) {
+                connectTwoDost(borderDot, dotToConnect)
+            }
+        }
+    }
+    
+    func connectTwoDost(_ firstDot: Dot, _ secondDot: Dot) {
+        dots[firstDot.index].connections += 1
+        dots[secondDot.index].connections += 1
+        borderLine.append(Line(fromDot: firstDot, toDot: secondDot))
+    }
+    
+    func findClosestDot(to dot: Dot) -> Dot? {
+        let sameTypeDots = dots.filter { $0.type == dot.type && $0.connections == 0 && $0 != dot }
+        
+        let sortedDots = sameTypeDots.sorted { (first, second) -> Bool in
+//            let firstColumn = first.get2DCoordinates().column - dot.get2DCoordinates().column
+            
+            
+            
+        }
+        
+        var resultDot = sameTypeDots.first
+//        var minDisnance = 1000
+//        for sameTypeDot in sameTypeDots {
+//            let distanceTo = sameTypeDot.index - dot.index
+//            if distanceTo < minDisnance {
+//                resultDot = sameTypeDot
+//                minDisnance = distanceTo
+//            }
+//        }
+        
+        return resultDot
     }
     
     func getRows() -> [[Dot]] {
@@ -58,8 +123,6 @@ class Board: NSObject {
             
             result.append(row)
         }
-        
-        
         
         return result
     }
