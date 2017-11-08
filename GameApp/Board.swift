@@ -27,6 +27,14 @@ class Dot: NSObject {
     var connections = 0
     var index: Int
     
+    var column: Int {
+        return index % 12
+    }
+    
+    var row: Int {
+        return index / 12
+    }
+    
     init(type: DotType, index: Int, char: Character) {
         self.type = type
         self.index = index
@@ -34,13 +42,7 @@ class Dot: NSObject {
         super.init()
         self.active = true
     }
-    
-    func get2DCoordinates() -> (row: Int, column: Int) {
-        let row = index / 12
-        let column = index % 12
-        return (row, column)
-    }
-    
+
 }
 
 class Line: NSObject {
@@ -51,7 +53,6 @@ class Line: NSObject {
         self.fromDot = fromDot
         self.toDot = toDot
     }
-    
 }
 
 class Board: NSObject {
@@ -59,8 +60,8 @@ class Board: NSObject {
     static let width = 12
     static let height = 12
     
-    private var dots = [Dot]()
-    private var borderDots = [Dot]()
+    var dots = [Dot]()
+    var borderDots = [Dot]()
     var borderLine = [Line]()
     
     init(levelString: String) {
@@ -104,38 +105,6 @@ class Board: NSObject {
         borderLine.append(Line(fromDot: firstDot, toDot: secondDot))
     }
     
-    func haveNext(dot: Dot) -> Dot? {
-        if dot.get2DCoordinates().column < 11 {
-            if dots[dot.index + 1].type == .border {
-                return dots[dot.index + 1]
-            }
-        }
-        
-        return nil
-    }
-    
-    func haveBottom(dot: Dot) -> Dot? {
-        if dot.get2DCoordinates().row < 11 {
-            if dots[dot.index + 12].type == .border {
-                return dots[dot.index + 12]
-            }
-        }
-        
-        return nil
-    }
-    
-    func haveDiagonal(dot: Dot) -> Dot? {
-        if dot.get2DCoordinates().column < 11 && dot.get2DCoordinates().row < 11 {
-            if dots[dot.index + 13].type == .border {
-                return dots[dot.index + 13]
-            } else if dots[dot.index + 11].type == .border {
-                return dots[dot.index + 11]
-            }
-        }
-        
-        return nil
-    }
-    
     func getRows() -> [[Dot]] {
         var result = [[Dot]]()
         
@@ -152,16 +121,24 @@ class Board: NSObject {
         return result
     }
     
+//    func getLastOppositeDotInColumn(startDot: Dot) -> Dot {
+//        let dotsInColumn = borderDots.filter { $0.column == startDot.column }
+//        return dotsInColumn.sorted(by: { $0.row > $1.row }).first!
+//    }
+//
+//    func getLastOppositeDotInRow(startDot: Dot) -> Dot {
+//
+//        let dotsInRow = borderDots.filter { $0.row == startDot.row }
+//        return dotsInRow.sorted(by: { $0.column < $1.column }).first!
+//    }
     
 }
+
+
 
 extension Character {
     var code: Int {
         
         return Int(self.unicodeScalars.first?.value ?? 0)
-    }
-    
-    static var startCode: Int {
-        return 48
     }
 }

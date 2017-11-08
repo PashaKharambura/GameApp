@@ -38,7 +38,7 @@ class Levels {
     ".X        G." +
     "W          H" +
     ".V        I." +
-    ".U        J." +
-    ".TSRQPONMLK."
+    ".UT       J." +
+    "..SRQPONMLK."
     
 }

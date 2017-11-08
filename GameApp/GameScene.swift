@@ -11,6 +11,8 @@ import GameplayKit
 
 class GameScene: SKScene {
     
+    let brightBlue = UIColor(displayP3Red: 0.0, green: 0.0, blue: 1.0, alpha: 0.3)
+    
     var board: Board!
     
     var delta = CGFloat()
@@ -21,6 +23,31 @@ class GameScene: SKScene {
         board = Board(levelString: Levels.lvl1)
         generateLevelBackground()
         createBorder()
+        createGrid()
+    }
+    
+    func createGrid() {
+    
+        let screen = scene?.frame
+        let newStartY = startY - CGFloat(Int((startY/delta)))*(delta)
+        
+        for i in 0..<Board.width {
+            let fromPoint = CGPoint(x: startX + CGFloat(i)*delta, y: 0)
+            let toPoint = CGPoint(x: startX + CGFloat(i)*delta , y: (screen?.height)!)
+            
+            // MARK: customise lines later!!!!!!!
+            
+            drawLine(from: fromPoint, to: toPoint, with: brightBlue, and: 1.0)
+        }
+        
+        for j in 0..<Int((screen?.height)!/delta) {
+            
+            let fromPoint = CGPoint(x: 0, y: newStartY + CGFloat(j)*delta)
+            let toPoint = CGPoint(x: (screen?.width)! , y: newStartY + CGFloat(j)*delta)
+            
+            drawLine(from: fromPoint, to: toPoint, with: brightBlue, and: 1.0)
+        }
+        
     }
     
     func createDot(at position: CGPoint, and color: UIColor) {
@@ -40,40 +67,38 @@ class GameScene: SKScene {
     
     func createBorder() {
         for line in board.borderLine {
-            let path = CGMutablePath()
-            let firstDotCoordinates = line.fromDot.get2DCoordinates()
-            path.move(to: position(for: firstDotCoordinates.column, and: firstDotCoordinates.row))
-            
-            let secondDotCoordinates = line.toDot.get2DCoordinates()
-            path.addLine(to: position(for: secondDotCoordinates.column, and: secondDotCoordinates.row))
-         
-            let lineNode = SKShapeNode(path: path)
-            lineNode.fillColor = .black
-            lineNode.strokeColor = .black
-            lineNode.lineWidth = 4
-            addChild(lineNode)
+            let fromPos = position(for: line.fromDot.column, and: line.fromDot.row)
+            let toPos = position(for: line.toDot.column, and: line.toDot.row)
+            drawLine(from: fromPos, to: toPos, with: .black, and: 3)
         }
-        print("lines = ", board.borderLine.count)
+    }
+    
+    func drawLine(from startPosition: CGPoint, to endPosition: CGPoint, with color: UIColor, and width: CGFloat) {
+        let path = CGMutablePath()
+        path.move(to: startPosition)
+        path.addLine(to: endPosition)
+        let lineNode = SKShapeNode(path: path)
+        lineNode.fillColor = color
+        lineNode.strokeColor = color
+        lineNode.lineWidth = width
+        addChild(lineNode)
     }
     
     func generateLevelBackground() {
         delta = ((scene?.frame.maxX)!)/CGFloat(Board.width)
         startX = delta/2
         startY = (scene?.frame.midY)! - CGFloat(Board.height)/2 * delta
-        
-        for (rowNumber, row) in board.getRows().enumerated() {
-            for (colNumber, dot) in row.enumerated() {
-                if dot.type != .outside {
-                    var color: UIColor
-                    if dot.type == .border {
-                        color = .black
-                    } else {
-                        color = .gray
-                    }
-                    createDot(at: position(for: colNumber, and: rowNumber), and: color)
+    
+        for dot in board.dots {
+            if dot.type != .outside {
+                var color: UIColor
+                if dot.type == .border {
+                    color = .black
+                } else {
+                    color = .gray
                 }
+                createDot(at: position(for: dot.column, and: dot.row), and: color)
             }
-            
         }
     }
     
