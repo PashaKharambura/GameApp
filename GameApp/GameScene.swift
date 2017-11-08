@@ -18,7 +18,7 @@ class GameScene: SKScene {
     var startY = CGFloat()
     
     override func didMove(to view: SKView) {
-        board = Board(levelString: Levels.lvl2)
+        board = Board(levelString: Levels.lvl1)
         generateLevelBackground()
         createBorder()
     }
@@ -78,7 +78,9 @@ class GameScene: SKScene {
     }
     
     func position(for column: Int, and row: Int) -> CGPoint {
-        return CGPoint(x: startX + delta * CGFloat(column), y: startY + delta * CGFloat(row))
+        let x = startX + delta * CGFloat(column)
+        let y = startY + delta * CGFloat(11 - row)
+        return CGPoint(x: x, y: y)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
