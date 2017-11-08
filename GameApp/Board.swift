@@ -16,13 +16,13 @@ class Dot: NSObject {
     }
     var char: Character
     var type: DotType
-    var active = false {
-        didSet {
-            if type == .border {
-                active = oldValue
-            }
-        }
-    }
+//    var active = false {
+//        didSet {
+//            if type == .border {
+//                active = oldValue
+//            }
+//        }
+//    }
     
     var connections = 0
     var index: Int
@@ -40,7 +40,7 @@ class Dot: NSObject {
         self.index = index
         self.char = char
         super.init()
-        self.active = true
+//        self.active = true
     }
 
 }
@@ -86,7 +86,6 @@ class Board: NSObject {
     }
     
     func createBorderLine() {
-        
         for (index, borderDot) in borderDots.enumerated() {
             var dotToConnect: Dot
             if index == borderDots.count - 1 {
@@ -95,7 +94,6 @@ class Board: NSObject {
                 dotToConnect = borderDots[index + 1]
             }
             connectTwoDost(borderDot, dotToConnect)
-            
         }
     }
     
@@ -114,24 +112,14 @@ class Board: NSObject {
             for j in 0..<12 {
                 row.append(dots[i * 12 + j])
             }
-            
             result.append(row)
         }
-        
         return result
     }
     
-//    func getLastOppositeDotInColumn(startDot: Dot) -> Dot {
-//        let dotsInColumn = borderDots.filter { $0.column == startDot.column }
-//        return dotsInColumn.sorted(by: { $0.row > $1.row }).first!
-//    }
-//
-//    func getLastOppositeDotInRow(startDot: Dot) -> Dot {
-//
-//        let dotsInRow = borderDots.filter { $0.row == startDot.row }
-//        return dotsInRow.sorted(by: { $0.column < $1.column }).first!
-//    }
-    
+    func haveDot(onColumn col: Int, andRow row: Int) -> Dot? {
+        return dots.first(where: { $0.row == row && $0.column == col && $0.type != .outside })
+    }
 }
 
 

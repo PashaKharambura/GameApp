@@ -19,15 +19,30 @@ class GameScene: SKScene {
     var startX = CGFloat()
     var startY = CGFloat()
     
+    var selectedDot: DotNode? = nil {
+        willSet {
+            if newValue == nil  {
+                hideMoves()
+            }
+        }
+        
+        didSet {
+            if oldValue == nil {
+                showMoves()
+            }
+        }
+    }
+    
+    var dotNodes = [DotNode]()
+    
     override func didMove(to view: SKView) {
-        board = Board(levelString: Levels.lvl1)
+        board = Board(levelString: Levels.lvl2)
         generateLevelBackground()
         createBorder()
         createGrid()
     }
     
     func createGrid() {
-    
         let screen = scene?.frame
         let newStartY = startY - CGFloat(Int((startY/delta)))*(delta)
         
@@ -48,21 +63,6 @@ class GameScene: SKScene {
             drawLine(from: fromPoint, to: toPoint, with: brightBlue, and: 1.0)
         }
         
-    }
-    
-    func createDot(at position: CGPoint, and color: UIColor) {
-        let dotNode = SKShapeNode(circleOfRadius: 3)
-        let biggerDotNode = SKShapeNode(circleOfRadius: delta/2)
-        
-        dotNode.position = .zero
-        dotNode.fillColor = color
-        dotNode.strokeColor = color
-        
-        biggerDotNode.position = position
-        
-        biggerDotNode.addChild(dotNode)
-        
-        addChild(biggerDotNode)
     }
     
     func createBorder() {
@@ -97,7 +97,11 @@ class GameScene: SKScene {
                 } else {
                     color = .gray
                 }
-                createDot(at: position(for: dot.column, and: dot.row), and: color)
+                let pos = position(for: dot.column, and: dot.row)
+                let dotNode = DotNode(circleOfRadius: 3, at: pos, and: color, tapAreaRaduis: delta/2, index: dot.index)
+                addChild(dotNode.tapArea)
+                
+                dotNodes.append(dotNode)
             }
         }
     }
@@ -109,14 +113,54 @@ class GameScene: SKScene {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-
         if let touch = touches.first {
-            let obj = atPoint(touch.location(in: self))
-            if obj.children.count == 1 {
-                let child = obj.children[0] as! SKShapeNode
-                child.fillColor = .blue
+            if let obj = atPoint(touch.location(in: self)) as? SKShapeNode {
+                if let dotNode = getDotNodeFrom(shapeNode: obj) {
+                    print(dotNode.index)
+                    if selectedDot == nil {
+                        selectedDot = dotNode
+                    } else {
+                        print("creating line")
+                        selectedDot = nil
+                    }
+                }
+            } else {
+                selectedDot = nil
             }
         }
+    }
+    
+    func getDotNodeFrom(shapeNode: SKShapeNode) -> DotNode? {
+        return dotNodes.first { $0.tapArea == shapeNode || $0.visibleDot == shapeNode }
+    }
+    
+    func getNodeWith(index: Int) -> DotNode {
+        return dotNodes.first { $0.index == index }!
+    }
+    
+    func showMoves() {
+        getDotsNearSelected().forEach { $0.zoomIn() }
+    }
+    
+    func getDotsNearSelected() -> [DotNode] {
+        let dot = board.dots[selectedDot!.index]
+        var result = [DotNode]()
+        
+        for i in -1...1 {
+            for j in -1...1 {
+                if let temp = board.haveDot(onColumn: dot.column + i, andRow: dot.row + j) {
+                    if !(dot.type == .border && temp.type == .border) {
+                        result.append(getNodeWith(index: temp.index))
+                    }
+                }
+            }
+        }
+        
+        return result.filter{ $0 != getNodeWith(index: selectedDot!.index) }
+    }
+    
+    func hideMoves() {
+        getDotsNearSelected().forEach{ $0.zoomOut() }
     }
     
     override func update(_ currentTime: TimeInterval) {

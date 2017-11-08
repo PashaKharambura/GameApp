@@ -16,6 +16,7 @@
 		29EBAFDA1FB1D9160086F17E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 29EBAFD81FB1D9160086F17E /* LaunchScreen.storyboard */; };
 		B30077A91FB1F360006DA325 /* Levels.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30077A81FB1F360006DA325 /* Levels.swift */; };
 		B30077AB1FB1FC92006DA325 /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30077AA1FB1FC92006DA325 /* Board.swift */; };
+		B3A396521FB39C8F00BCEA54 /* DotNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A396511FB39C8F00BCEA54 /* DotNode.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		29EBAFDB1FB1D9160086F17E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B30077A81FB1F360006DA325 /* Levels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Levels.swift; sourceTree = "<group>"; };
 		B30077AA1FB1FC92006DA325 /* Board.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Board.swift; sourceTree = "<group>"; };
+		B3A396511FB39C8F00BCEA54 /* DotNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DotNode.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +67,7 @@
 				29EBAFC91FB1D9160086F17E /* AppDelegate.swift */,
 				29EBAFCB1FB1D9160086F17E /* GameScene.sks */,
 				29EBAFCF1FB1D9160086F17E /* GameScene.swift */,
+				B3A396511FB39C8F00BCEA54 /* DotNode.swift */,
 				B30077A81FB1F360006DA325 /* Levels.swift */,
 				B30077AA1FB1FC92006DA325 /* Board.swift */,
 				29EBAFD11FB1D9160086F17E /* GameViewController.swift */,
@@ -150,6 +153,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B30077AB1FB1FC92006DA325 /* Board.swift in Sources */,
+				B3A396521FB39C8F00BCEA54 /* DotNode.swift in Sources */,
 				29EBAFD01FB1D9160086F17E /* GameScene.swift in Sources */,
 				B30077A91FB1F360006DA325 /* Levels.swift in Sources */,
 				29EBAFD21FB1D9160086F17E /* GameViewController.swift in Sources */,
