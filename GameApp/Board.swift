@@ -70,9 +70,9 @@ class Board: NSObject {
             let index = dots.count
             var element: Dot
             switch char {
-            case " ": element = Dot(type: .inside, index: index, char: char)
-            case ".": element = Dot(type: .outside, index: index, char: char)
-            default: element = Dot(type: .border, index: index, char: char)
+                case " ": element = Dot(type: .inside, index: index, char: char)
+                case ".": element = Dot(type: .outside, index: index, char: char)
+                default: element = Dot(type: .border, index: index, char: char)
                          borderDots.append(element)
             }
             dots.append(element)

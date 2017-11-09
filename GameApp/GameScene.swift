@@ -15,8 +15,9 @@ class GameScene: SKScene {
     
     var firstDot = Dot(type: .border, index: 1, char: "0")
     var secondDot = Dot(type: .border, index: 1, char: "0")
-    var touched:Bool = false
 
+    var aviableDots = [DotNode]()
+    
     var board: Board!
     
     var delta = CGFloat()
@@ -118,6 +119,8 @@ class GameScene: SKScene {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
 
+        
+        
         if let touch1 = touches.first {
             if let obj = atPoint(touch1.location(in: self)) as? SKShapeNode {
                 if let dotNode = board.getDotNodeFrom(shapeNode: obj, dotNodes: dotNodes) {
@@ -125,25 +128,24 @@ class GameScene: SKScene {
                     if selectedDot == nil {
                         selectedDot = dotNode
                         firstDot = board.dots[dotNode.index]
-                        print(firstDot.column, firstDot.row)
-                        touched = true
+                        aviableDots = board.getDotsNear(selected: selectedDot!, dotNodes: dotNodes)
                     } else {
                         secondDot = board.dots[dotNode.index]
-                        print(secondDot.column, secondDot.row)
-                        touched = false
-                        selectedDot = nil
+                        if aviableDots.contains(dotNode) {
+                            board.connectTwoDost(firstDot, secondDot)
+                            drawLine(from: position(for: firstDot.column, and: firstDot.row), to: position(for: secondDot.column, and: secondDot.row), with: .black, and: 3)
+                            selectedDot = nil
+                        }
                     }
                 }
             } else {
                 selectedDot = nil
             }
-            
         }
     }
     
     func showMoves() {
         board.getDotsNear(selected: selectedDot!, dotNodes: dotNodes).forEach( { $0.zoomIn() } )
-    
     }
     
     func hideMoves() {
@@ -151,10 +153,6 @@ class GameScene: SKScene {
     }
     
     override func update(_ currentTime: TimeInterval) {
-//
-//        if (touched) {
-//            board.connectTwoDost(firstDot, secondDot)
-//        }
         
     }
     
