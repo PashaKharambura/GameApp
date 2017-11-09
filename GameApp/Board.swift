@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SpriteKit
 
 class Dot: NSObject {
     enum DotType: Int {
@@ -14,15 +15,9 @@ class Dot: NSObject {
         case inside
         case outside
     }
+    
     var char: Character
     var type: DotType
-//    var active = false {
-//        didSet {
-//            if type == .border {
-//                active = oldValue
-//            }
-//        }
-//    }
     
     var connections = 0
     var index: Int
@@ -40,7 +35,6 @@ class Dot: NSObject {
         self.index = index
         self.char = char
         super.init()
-//        self.active = true
     }
 
 }
@@ -64,6 +58,7 @@ class Board: NSObject {
     var borderDots = [Dot]()
     var borderLine = [Line]()
     
+    
     init(levelString: String) {
         super.init()
         createDotsArray(from: levelString)
@@ -83,6 +78,30 @@ class Board: NSObject {
             dots.append(element)
         }
         borderDots = borderDots.sorted { $0.char.code < $1.char.code }
+    }
+    
+    func getDotsNear(selected dot:DotNode, dotNodes: [DotNode]) -> [DotNode] {
+        let dot = dots[dot.index]
+        var result = [DotNode]()
+        
+        for i in -1...1 {
+            for j in -1...1 {
+                if let temp = haveDot(onColumn: dot.column + i, andRow: dot.row + j) {
+                    if !(dot.type == .border && temp.type == .border) {
+                        result.append(getNodeWith(index: temp.index, dotNodes: dotNodes))
+                    }
+                }
+            }
+        }
+        return result.filter{ $0 != getNodeWith(index: dot.index, dotNodes: dotNodes) }
+    }
+    
+    func getDotNodeFrom(shapeNode: SKShapeNode, dotNodes: [DotNode]) -> DotNode? {
+        return dotNodes.first { $0.tapArea == shapeNode || $0.visibleDot == shapeNode }
+    }
+    
+    func getNodeWith(index: Int, dotNodes: [DotNode]) -> DotNode {
+        return dotNodes.first { $0.index == index }!
     }
     
     func createBorderLine() {

@@ -13,6 +13,10 @@ class GameScene: SKScene {
     
     let brightBlue = UIColor(displayP3Red: 0.0, green: 0.0, blue: 1.0, alpha: 0.3)
     
+    var firstDot = Dot(type: .border, index: 1, char: "0")
+    var secondDot = Dot(type: .border, index: 1, char: "0")
+    var touched:Bool = false
+
     var board: Board!
     
     var delta = CGFloat()
@@ -113,58 +117,45 @@ class GameScene: SKScene {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if let touch = touches.first {
-            if let obj = atPoint(touch.location(in: self)) as? SKShapeNode {
-                if let dotNode = getDotNodeFrom(shapeNode: obj) {
+
+        if let touch1 = touches.first {
+            if let obj = atPoint(touch1.location(in: self)) as? SKShapeNode {
+                if let dotNode = board.getDotNodeFrom(shapeNode: obj, dotNodes: dotNodes) {
                     print(dotNode.index)
                     if selectedDot == nil {
                         selectedDot = dotNode
+                        firstDot = board.dots[dotNode.index]
+                        print(firstDot.column, firstDot.row)
+                        touched = true
                     } else {
-                        print("creating line")
+                        secondDot = board.dots[dotNode.index]
+                        print(secondDot.column, secondDot.row)
+                        touched = false
                         selectedDot = nil
                     }
                 }
             } else {
                 selectedDot = nil
             }
+            
         }
-    }
-    
-    func getDotNodeFrom(shapeNode: SKShapeNode) -> DotNode? {
-        return dotNodes.first { $0.tapArea == shapeNode || $0.visibleDot == shapeNode }
-    }
-    
-    func getNodeWith(index: Int) -> DotNode {
-        return dotNodes.first { $0.index == index }!
     }
     
     func showMoves() {
-        getDotsNearSelected().forEach { $0.zoomIn() }
-    }
+        board.getDotsNear(selected: selectedDot!, dotNodes: dotNodes).forEach( { $0.zoomIn() } )
     
-    func getDotsNearSelected() -> [DotNode] {
-        let dot = board.dots[selectedDot!.index]
-        var result = [DotNode]()
-        
-        for i in -1...1 {
-            for j in -1...1 {
-                if let temp = board.haveDot(onColumn: dot.column + i, andRow: dot.row + j) {
-                    if !(dot.type == .border && temp.type == .border) {
-                        result.append(getNodeWith(index: temp.index))
-                    }
-                }
-            }
-        }
-        
-        return result.filter{ $0 != getNodeWith(index: selectedDot!.index) }
     }
     
     func hideMoves() {
-        getDotsNearSelected().forEach{ $0.zoomOut() }
+        board.getDotsNear(selected: selectedDot!, dotNodes: dotNodes).forEach( { $0.zoomOut() })
     }
     
     override func update(_ currentTime: TimeInterval) {
-        // Called before each frame is rendered
+//
+//        if (touched) {
+//            board.connectTwoDost(firstDot, secondDot)
+//        }
+        
     }
     
 }
