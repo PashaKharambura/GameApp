@@ -64,19 +64,51 @@
 		29EBAFC81FB1D9160086F17E /* GameApp */ = {
 			isa = PBXGroup;
 			children = (
-				29EBAFC91FB1D9160086F17E /* AppDelegate.swift */,
-				29EBAFCB1FB1D9160086F17E /* GameScene.sks */,
-				29EBAFCF1FB1D9160086F17E /* GameScene.swift */,
-				B3A396511FB39C8F00BCEA54 /* DotNode.swift */,
-				B30077A81FB1F360006DA325 /* Levels.swift */,
+				B3A396561FB4A14F00BCEA54 /* Helpers */,
+				B3A396541FB4A13900BCEA54 /* View */,
+				B3A396551FB4A14600BCEA54 /* Controller */,
+				B3A396531FB4A11300BCEA54 /* Model */,
+			);
+			path = GameApp;
+			sourceTree = "<group>";
+		};
+		B3A396531FB4A11300BCEA54 /* Model */ = {
+			isa = PBXGroup;
+			children = (
 				B30077AA1FB1FC92006DA325 /* Board.swift */,
-				29EBAFD11FB1D9160086F17E /* GameViewController.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		B3A396541FB4A13900BCEA54 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				29EBAFCB1FB1D9160086F17E /* GameScene.sks */,
+				B3A396511FB39C8F00BCEA54 /* DotNode.swift */,
 				29EBAFD31FB1D9160086F17E /* Main.storyboard */,
 				29EBAFD61FB1D9160086F17E /* Assets.xcassets */,
 				29EBAFD81FB1D9160086F17E /* LaunchScreen.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		B3A396551FB4A14600BCEA54 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				29EBAFCF1FB1D9160086F17E /* GameScene.swift */,
+				29EBAFD11FB1D9160086F17E /* GameViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		B3A396561FB4A14F00BCEA54 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				29EBAFC91FB1D9160086F17E /* AppDelegate.swift */,
+				B30077A81FB1F360006DA325 /* Levels.swift */,
 				29EBAFDB1FB1D9160086F17E /* Info.plist */,
 			);
-			path = GameApp;
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -296,7 +328,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8N949X2SJZ;
-				INFOPLIST_FILE = GameApp/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/GameApp/Helpers/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = scales.GameApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -311,7 +343,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8N949X2SJZ;
-				INFOPLIST_FILE = GameApp/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/GameApp/Helpers/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = scales.GameApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
