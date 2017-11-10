@@ -16,7 +16,7 @@ class Board: NSObject {
     
     var dots = [Dot]()
     var borderDots = [Dot]()
-    var lines = [Line]()
+    var lines = Set<Line>()
     var figures = [Line]()
     
     init(levelString: String) {
@@ -103,7 +103,7 @@ class Board: NSObject {
         dots[secondDot.index].connections.append(firstDot)
         
         let line = Line(fromDot: firstDot, toDot: secondDot)
-        lines.append(line)
+        lines.insert(line)
         if lines.count > 40 {
             print(line.diagonal)
             print(line.angel)
