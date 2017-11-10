@@ -31,6 +31,8 @@ class GameScene: SKScene {
         createGrid()
     }
     
+    // Make and paint background grid
+    
     func createGrid() {
         let screen = scene?.frame
         let newStartY = startY - CGFloat(Int((startY/delta)))*(delta)
@@ -54,6 +56,8 @@ class GameScene: SKScene {
         
     }
     
+    // Draw border lines
+    
     func createBorder() {
         for line in board.lines {
             let fromPos = position(for: line.fromDot.column, and: line.fromDot.row)
@@ -73,6 +77,8 @@ class GameScene: SKScene {
         
         addChild(lineNode)
     }
+    
+    // Make field dots
     
     func generateLevelBackground() {
         delta = ((scene?.frame.maxX)!)/CGFloat(Board.width)
@@ -96,21 +102,24 @@ class GameScene: SKScene {
         }
     }
     
+    // Get position from column&row
+    
     func position(for column: Int, and row: Int) -> CGPoint {
         let x = startX + delta * CGFloat(column)
         let y = startY + delta * CGFloat(11 - row)
         return CGPoint(x: x, y: y)
     }
+
+    // Touches processing
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if let touch1 = touches.first {
             if let obj = atPoint(touch1.location(in: self)) as? SKShapeNode {
                 if let dotNode = getDotNodeFrom(shapeNode: obj) {
-//                    print(dotNode.index)
+
                     if selectedDot == nil { // first dot tap
                         selectedDot = dotNode
-                        fillAvailableDotsFrom(dots: board.getDotsNear(dot: board.dots[dotNode.index]))
-                        showMoves()
+                        fillAvailableDotsFrom(dots: board.getDotsNear(dot: board.dots[dotNode.index]), callback: showMoves)
                     } else { // second dot tap or diselect
                         let secondDot = dotNode
                         if availableDots!.contains(secondDot) {
@@ -132,11 +141,13 @@ class GameScene: SKScene {
         return dotNodes.first { $0.tapArea == shapeNode || $0.visibleDot == shapeNode }
     }
 
+    // Make array of available dots for connecting with selected dot
     
-    func fillAvailableDotsFrom(dots: [Dot]) {
+    func fillAvailableDotsFrom(dots: [Dot], callback: @escaping ()->()) {
         availableDots = dots.map({ (dot) -> DotNode in
             dotNodes.first { $0.index == dot.index }!
         })
+        callback()
         
     }
     

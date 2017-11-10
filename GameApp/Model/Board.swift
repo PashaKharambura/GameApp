@@ -25,6 +25,8 @@ class Board: NSObject {
         createBorderLine()
     }
     
+    // Cteate all dots array and border dots array with sorting by clockwise
+    
     func createDotsArray(from levelString: String) {
         for char in levelString {
             let index = dots.count
@@ -40,13 +42,17 @@ class Board: NSObject {
         borderDots = borderDots.sorted { $0.char.code < $1.char.code }
     }
     
+    // Check if array of all lines have line with two dots
+    
     func containLine(with dot1: Dot, and dot2: Dot) -> Bool {
-        if (lines.contains(Line(fromDot: dot1, toDot: dot2)) || lines.contains(Line(fromDot: dot2, toDot: dot1))) {
+        if (lines.contains { $0.fromDot.index == dot1.index && $0.toDot.index == dot2.index} || lines.contains { $0.toDot.index == dot1.index && $0.fromDot.index == dot2.index} ) {
             return true
         } else {
             return false
         }
     }
+    
+    // Find dots which can be connected with selected dot
     
     func getDotsNear(dot: Dot) -> [Dot] {
         var result = [Dot]()
@@ -57,12 +63,7 @@ class Board: NSObject {
                     if !temp.connections.contains(dot) {
                         
                         if !( (i + j == 2 || i + j == 0 || i + j == -2) && (containLine(with: haveDot(onColumn: dot.column + i, andRow: dot.row)!, and: haveDot(onColumn: dot.column, andRow: dot.row + j)!)) ) {
-//                            result.append(temp)
                             result.insert(temp, at: 0)
-                            print("i = \(i)")
-                            print("j = \(j)")
-                            print(containLine(with: haveDot(onColumn: dot.column + i, andRow: dot.row)!, and: haveDot(onColumn: dot.column, andRow: dot.row + j)!))
-                            print("Зайшло")
                          }
                     }
                 }
@@ -81,6 +82,8 @@ class Board: NSObject {
         return false
     }
     
+    // Create border
+    
     func createBorderLine() {
         for (index, borderDot) in borderDots.enumerated() {
             var dotToConnect: Dot
@@ -92,6 +95,8 @@ class Board: NSObject {
             connectTwoDost(borderDot, dotToConnect)
         }
     }
+    
+    // Connecting 2 dots and analysing figure later...
     
     func connectTwoDost(_ firstDot: Dot, _ secondDot: Dot) {
         dots[firstDot.index].connections.append(secondDot)
@@ -127,6 +132,8 @@ class Board: NSObject {
         }
         return result
     }
+    
+    // Return dot with column&row
     
     func haveDot(onColumn col: Int, andRow row: Int) -> Dot? {
         return dots.first(where: { $0.row == row && $0.column == col && $0.type != .outside })
