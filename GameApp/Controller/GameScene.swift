@@ -71,7 +71,6 @@ class GameScene: SKScene {
         lineNode.strokeColor = color
         lineNode.lineWidth = width
         
-        print("drawing line from \(startPosition) to \(endPosition)")
         addChild(lineNode)
     }
     
@@ -107,10 +106,9 @@ class GameScene: SKScene {
         if let touch1 = touches.first {
             if let obj = atPoint(touch1.location(in: self)) as? SKShapeNode {
                 if let dotNode = getDotNodeFrom(shapeNode: obj) {
-                    print(dotNode.index)
+//                    print(dotNode.index)
                     if selectedDot == nil { // first dot tap
                         selectedDot = dotNode
-//                        availableDots = getDotsNear(selected: selectedDot!, dotNodes: dotNodes)
                         fillAvailableDotsFrom(dots: board.getDotsNear(dot: board.dots[dotNode.index]))
                         showMoves()
                     } else { // second dot tap or diselect
