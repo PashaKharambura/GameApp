@@ -35,4 +35,7 @@ class Dot: NSObject {
         super.init()
     }
     
+    static func == (lhs: Dot, rhs: Dot) -> Bool {
+        return lhs.index == rhs.index
+    }
 }

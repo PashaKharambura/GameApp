@@ -26,6 +26,10 @@ class Line: NSObject {
         }
     }
     
+    private var reversed: Line {
+        return Line(fromDot: toDot, toDot: fromDot)
+    }
+    
     var angel: Double {
         return (atan2(Double((fromDot.column - toDot.column)), Double((fromDot.row - toDot.row))) / -Double.pi * 180) + 180
     }
@@ -46,6 +50,14 @@ class Line: NSObject {
     
     func getConnectedDot(dot: Dot) -> Dot {
         return fromDot == dot ? toDot : fromDot
+    }
+    
+    func lineIsEqual(to line: Line) -> Bool {
+        return self == line || self.reversed == line
+    }
+    
+    static func == (lhs: Line, rhs: Line) -> Bool {
+        return lhs.toDot == rhs.toDot && lhs.fromDot == rhs.fromDot
     }
     
 }

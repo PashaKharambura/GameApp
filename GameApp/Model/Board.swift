@@ -44,12 +44,8 @@ class Board: NSObject {
     
     // Check if array of all lines have line with two dots
     
-    func containLine(with dot1: Dot, and dot2: Dot) -> Bool {
-        if (lines.contains { $0.fromDot.index == dot1.index && $0.toDot.index == dot2.index} || lines.contains { $0.toDot.index == dot1.index && $0.fromDot.index == dot2.index} ) {
-            return true
-        } else {
-            return false
-        }
+    func linesArrayContains(line: Line) -> Bool {
+        return lines.contains(where: { $0 == line })
     }
     
     // Find dots which can be connected with selected dot
@@ -61,8 +57,7 @@ class Board: NSObject {
             for j in -1...1 {
                 if let temp = haveDot(onColumn: dot.column + i, andRow: dot.row + j) {
                     if !temp.connections.contains(dot) {
-                        
-                        if !( (i + j == 2 || i + j == 0 || i + j == -2) && (containLine(with: haveDot(onColumn: dot.column + i, andRow: dot.row)!, and: haveDot(onColumn: dot.column, andRow: dot.row + j)!)) ) {
+                        if !( (i + j == 2 || i + j == 0 || i + j == -2) && linesArrayContains(line: (Line(fromDot: haveDot(onColumn: dot.column + i, andRow: dot.row)!, toDot: haveDot(onColumn: dot.column, andRow: dot.row + j)!)))) {
                             result.insert(temp, at: 0)
                          }
                     }
