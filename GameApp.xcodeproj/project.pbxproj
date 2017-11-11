@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		294DAEEF1FB75103004256C2 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 294DAEEE1FB75103004256C2 /* MenuViewController.swift */; };
+		294DAEF11FB7522A004256C2 /* GameModeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 294DAEF01FB7522A004256C2 /* GameModeViewController.swift */; };
 		29C171701FB4FC2400EDAF28 /* Dot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C1716F1FB4FC2400EDAF28 /* Dot.swift */; };
 		29C171721FB4FC8B00EDAF28 /* Line.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C171711FB4FC8B00EDAF28 /* Line.swift */; };
 		29C171741FB4FD4A00EDAF28 /* Extentions ond other.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C171731FB4FD4A00EDAF28 /* Extentions ond other.swift */; };
@@ -23,6 +25,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		294DAEEE1FB75103004256C2 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
+		294DAEF01FB7522A004256C2 /* GameModeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameModeViewController.swift; sourceTree = "<group>"; };
 		29C1716F1FB4FC2400EDAF28 /* Dot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dot.swift; sourceTree = "<group>"; };
 		29C171711FB4FC8B00EDAF28 /* Line.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Line.swift; sourceTree = "<group>"; };
 		29C171731FB4FD4A00EDAF28 /* Extentions ond other.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extentions ond other.swift"; sourceTree = "<group>"; };
@@ -105,6 +109,8 @@
 			children = (
 				29EBAFCF1FB1D9160086F17E /* GameScene.swift */,
 				29EBAFD11FB1D9160086F17E /* GameViewController.swift */,
+				294DAEEE1FB75103004256C2 /* MenuViewController.swift */,
+				294DAEF01FB7522A004256C2 /* GameModeViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -194,8 +200,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				B30077AB1FB1FC92006DA325 /* Board.swift in Sources */,
+				294DAEEF1FB75103004256C2 /* MenuViewController.swift in Sources */,
 				B3A396521FB39C8F00BCEA54 /* DotNode.swift in Sources */,
 				29EBAFD01FB1D9160086F17E /* GameScene.swift in Sources */,
+				294DAEF11FB7522A004256C2 /* GameModeViewController.swift in Sources */,
 				29C171701FB4FC2400EDAF28 /* Dot.swift in Sources */,
 				B30077A91FB1F360006DA325 /* Levels.swift in Sources */,
 				29C171741FB4FD4A00EDAF28 /* Extentions ond other.swift in Sources */,

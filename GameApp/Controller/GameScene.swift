@@ -70,12 +70,14 @@ class GameScene: SKScene {
         let path = CGMutablePath()
         path.move(to: startPosition)
         path.addLine(to: endPosition)
+        
         let lineNode = SKShapeNode(path: path)
         lineNode.fillColor = color
         lineNode.strokeColor = color
         lineNode.lineWidth = width
         
         addChild(lineNode)
+        
     }
     
     // Make field dots
