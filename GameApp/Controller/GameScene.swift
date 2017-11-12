@@ -9,8 +9,7 @@
 import SpriteKit
 import GameplayKit
 
-class GameScene: SKScene {
-    
+class GameScene: SKScene, BoardDelegate {
     let brightBlue = UIColor(displayP3Red: 0.0, green: 0.0, blue: 1.0, alpha: 0.3)
 
     var dotNodes = [DotNode]()
@@ -27,6 +26,7 @@ class GameScene: SKScene {
     
     override func didMove(to view: SKView) {
         board = Board(levelString: Levels.levels[LevelNumber.instanse.index])
+        board.delegate = self
         generateLevelBackground()
         createBorder()
         createGrid()
@@ -105,6 +105,24 @@ class GameScene: SKScene {
         }
     }
     
+    // Draw figure
+    
+    func handleNewFigure(_ figure: Figure) {
+        var dotNodes = getNodesFrom(dots: figure.dots)
+        print("got an \(figure.type)")
+        
+        let path = UIBezierPath()
+        path.move(to: dotNodes.removeFirst().tapArea.position)
+        dotNodes.forEach { path.addLine(to: $0.tapArea.position) }
+        path.close()
+        
+        let triangleNode = SKShapeNode(path: path.cgPath)
+        triangleNode.fillColor = .black
+        triangleNode.strokeColor = .black
+        
+        addChild(triangleNode)
+    }
+    
     // Get position from column&row
     
     func position(for column: Int, and row: Int) -> CGPoint {
@@ -147,11 +165,14 @@ class GameScene: SKScene {
     // Make array of available dots for connecting with selected dot
     
     func fillAvailableDotsFrom(dots: [Dot], callback: @escaping ()->()) {
-        availableDots = dots.map({ (dot) -> DotNode in
+        availableDots = getNodesFrom(dots: dots)
+        callback()
+    }
+    
+    func getNodesFrom(dots: [Dot]) -> [DotNode] {
+        return dots.map({ (dot) -> DotNode in
             dotNodes.first { $0.index == dot.index }!
         })
-        callback()
-        
     }
     
     func showMoves() {

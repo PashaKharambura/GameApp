@@ -26,6 +26,13 @@ class Line: NSObject {
         }
     }
     
+    var lenght: Double {
+        switch diagonal {
+        case .none: return 1
+        default: return 1.4
+        }
+    }
+    
     private var reversed: Line {
         return Line(fromDot: toDot, toDot: fromDot)
     }
@@ -54,6 +61,10 @@ class Line: NSObject {
     
     func lineIsEqual(to line: Line) -> Bool {
         return self == line || self.reversed == line
+    }
+    
+    override var description: String {
+        return "fromDot = (\(fromDot.index)), toDot (\(toDot.index))"
     }
     
     static func == (lhs: Line, rhs: Line) -> Bool {

@@ -26,6 +26,7 @@
 		B30077A91FB1F360006DA325 /* Levels.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30077A81FB1F360006DA325 /* Levels.swift */; };
 		B30077AB1FB1FC92006DA325 /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30077AA1FB1FC92006DA325 /* Board.swift */; };
 		B3A396521FB39C8F00BCEA54 /* DotNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A396511FB39C8F00BCEA54 /* DotNode.swift */; };
+		B3BA0D871FB8EFEE00470920 /* Figure.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3BA0D861FB8EFED00470920 /* Figure.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +51,7 @@
 		B30077A81FB1F360006DA325 /* Levels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Levels.swift; sourceTree = "<group>"; };
 		B30077AA1FB1FC92006DA325 /* Board.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Board.swift; sourceTree = "<group>"; };
 		B3A396511FB39C8F00BCEA54 /* DotNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DotNode.swift; sourceTree = "<group>"; };
+		B3BA0D861FB8EFED00470920 /* Figure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Figure.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +96,7 @@
 			isa = PBXGroup;
 			children = (
 				B30077AA1FB1FC92006DA325 /* Board.swift */,
+				B3BA0D861FB8EFED00470920 /* Figure.swift */,
 				29C1716F1FB4FC2400EDAF28 /* Dot.swift */,
 				29C171711FB4FC8B00EDAF28 /* Line.swift */,
 				29FF336D1FB8816900E84284 /* LevelNumber.swift */,
@@ -220,6 +223,7 @@
 				294DAEF11FB7522A004256C2 /* GameModeViewController.swift in Sources */,
 				29FF336A1FB877D100E84284 /* SelectLevelViewController.swift in Sources */,
 				29C171701FB4FC2400EDAF28 /* Dot.swift in Sources */,
+				B3BA0D871FB8EFEE00470920 /* Figure.swift in Sources */,
 				B30077A91FB1F360006DA325 /* Levels.swift in Sources */,
 				29C171741FB4FD4A00EDAF28 /* Extentions ond other.swift in Sources */,
 				29C171721FB4FC8B00EDAF28 /* Line.swift in Sources */,

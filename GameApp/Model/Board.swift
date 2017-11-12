@@ -9,15 +9,22 @@
 import UIKit
 import SpriteKit
 
-class Board: NSObject {
+protocol BoardDelegate {
+    func handleNewFigure(_ dots: Figure)
+}
 
+class Board: NSObject {
+    
+    var delegate: BoardDelegate?
+    
     static let width = 12
     static let height = 12
     
     var dots = [Dot]()
     var borderDots = [Dot]()
     var lines = Set<Line>()
-    var figures = [Line]()
+    var figures = Set<Figure>()
+    var blockedLines = Set<Line>()
     
     init(levelString: String) {
         super.init()
@@ -58,7 +65,9 @@ class Board: NSObject {
                 if let temp = haveDot(onColumn: dot.column + i, andRow: dot.row + j) {
                     if !temp.connections.contains(dot) {
                         if !( (i + j == 2 || i + j == 0 || i + j == -2) && linesArrayContains(line: (Line(fromDot: haveDot(onColumn: dot.column + i, andRow: dot.row)!, toDot: haveDot(onColumn: dot.column, andRow: dot.row + j)!)))) {
-                            result.insert(temp, at: 0)
+                            if !blockedLines.contains(where: { $0 == Line(fromDot: dot, toDot: temp) }) {
+                                result.insert(temp, at: 0)
+                            }
                          }
                     }
                 }
@@ -140,17 +149,23 @@ class Board: NSObject {
     func checkingForCloedArea(previousDot: Dot, tappedDot: Dot) {
         let dotFirst = tappedDot
         let dotSecond = previousDot
+        var potencialFigure = [dotFirst, dotSecond]
+        var linesArray = [Line(fromDot: dotFirst, toDot: dotSecond)]
         
         for dotThird in dotSecond.connections  {
             if dotThird.connections.count != 0 && !(dotThird == dotFirst) {
                 for dotFourth in dotThird.connections {
                     if dotFourth.connections.count != 0 && !(dotFourth == dotSecond) {
                         if dotFourth == dotFirst {
-                           print("Малий трикутник!")
+//                            print("Малий трикутник!")
+                            linesArray.append(contentsOf: [Line(fromDot: dotSecond, toDot: dotThird), Line(fromDot: dotThird, toDot: dotFirst)])
+                            potencialFigure.append(dotThird)
                         } else {
                             for dotFift in dotFourth.connections {
                                 if dotFift == dotFirst {
-                                    print("Якийсь чотирикутник або великий трикутник!")
+//                                    print("Якийсь чотирикутник або великий трикутник!")
+                                    potencialFigure.append(contentsOf: [dotThird, dotFourth])
+                                    linesArray.append(contentsOf: [Line(fromDot: dotSecond, toDot: dotThird), Line(fromDot: dotThird, toDot: dotFourth), Line(fromDot: dotFourth, toDot: dotFirst)])
                                 }
                             }
                         }
@@ -158,7 +173,12 @@ class Board: NSObject {
                 }
             }
         }
+        
+        if potencialFigure.count > 2 {
+            let figure = Figure(dots: potencialFigure, lines: linesArray)
+            figures.insert(figure)
+            delegate?.handleNewFigure(figure)
+        }
     }
-    
     
 }
