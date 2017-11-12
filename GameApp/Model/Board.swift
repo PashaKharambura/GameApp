@@ -102,17 +102,18 @@ class Board: NSObject {
         if lines.count > 40 {
             print(line.diagonal)
             print(line.angel)
-            analizeFigures(from: firstDot, to: secondDot)
+            checkingForCloedArea(previousDot: firstDot, tappedDot: secondDot)
+//            analizeFigures(from: firstDot, to: secondDot)
         }
     }
     
-    func analizeFigures(from startDot: Dot, to finishDot: Dot) {
-        print(finishDot.connections.count)
-        print(startDot.connections.count)
-        if startDot.connections.count >= 2 && finishDot.connections.count >= 2 {
-            print("finding figure")
-        }
-    }
+//    func analizeFigures(from startDot: Dot, to finishDot: Dot) {
+//        print(finishDot.connections.count)
+//        print(startDot.connections.count)
+//        if startDot.connections.count >= 2 && finishDot.connections.count >= 2 {
+//            print("finding figure")
+//        }
+//    }
     
     func getRows() -> [[Dot]] {
         var result = [[Dot]]()
@@ -133,4 +134,31 @@ class Board: NSObject {
     func haveDot(onColumn col: Int, andRow row: Int) -> Dot? {
         return dots.first(where: { $0.row == row && $0.column == col })
     }
+    
+    // Checking for figure 
+    
+    func checkingForCloedArea(previousDot: Dot, tappedDot: Dot) {
+        let dotFirst = tappedDot
+        let dotSecond = previousDot
+        
+        for dotThird in dotSecond.connections  {
+            if dotThird.connections.count != 0 && !(dotThird == dotFirst) {
+                for dotFourth in dotThird.connections {
+                    if dotFourth.connections.count != 0 && !(dotFourth == dotSecond) {
+                        if dotFourth == dotFirst {
+                           print("Малий трикутник!")
+                        } else {
+                            for dotFift in dotFourth.connections {
+                                if dotFift == dotFirst {
+                                    print("Якийсь чотирикутник або великий трикутник!")
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    
 }

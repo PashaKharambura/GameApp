@@ -28,7 +28,6 @@ class MenuViewController: CustomViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
     }
     
     @IBAction func exitGame(_ sender: Any) {
