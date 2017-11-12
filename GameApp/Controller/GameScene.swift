@@ -23,9 +23,10 @@ class GameScene: SKScene {
     var startY = CGFloat()
     
     var selectedDot: DotNode?
+    var gVC = GameViewController()
     
     override func didMove(to view: SKView) {
-        board = Board(levelString: Levels.lvl2)
+        board = Board(levelString: Levels.levels[LevelNumber.instanse.index])
         generateLevelBackground()
         createBorder()
         createGrid()

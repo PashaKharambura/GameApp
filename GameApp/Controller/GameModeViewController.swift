@@ -8,7 +8,7 @@
 
 import UIKit
 
-class GameModeViewController: UIViewController {
+class GameModeViewController: CustomViewController {
 
     @IBOutlet weak var playWithBot: UIButton! {
         didSet {
@@ -31,6 +31,9 @@ class GameModeViewController: UIViewController {
         super.viewDidLoad()
     }
 
+    @IBAction func goBack(_ sender: Any) {
+        navigationController?.popViewController(animated: true)
+    }
     
     
 }

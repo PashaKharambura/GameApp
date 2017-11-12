@@ -19,6 +19,10 @@
 		29EBAFD51FB1D9160086F17E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 29EBAFD31FB1D9160086F17E /* Main.storyboard */; };
 		29EBAFD71FB1D9160086F17E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 29EBAFD61FB1D9160086F17E /* Assets.xcassets */; };
 		29EBAFDA1FB1D9160086F17E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 29EBAFD81FB1D9160086F17E /* LaunchScreen.storyboard */; };
+		29FF336A1FB877D100E84284 /* SelectLevelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FF33691FB877D100E84284 /* SelectLevelViewController.swift */; };
+		29FF336C1FB878D600E84284 /* LevelCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FF336B1FB878D600E84284 /* LevelCollectionViewCell.swift */; };
+		29FF336E1FB8816900E84284 /* LevelNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FF336D1FB8816900E84284 /* LevelNumber.swift */; };
+		29FF33701FB88D4600E84284 /* CustomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FF336F1FB88D4600E84284 /* CustomViewController.swift */; };
 		B30077A91FB1F360006DA325 /* Levels.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30077A81FB1F360006DA325 /* Levels.swift */; };
 		B30077AB1FB1FC92006DA325 /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30077AA1FB1FC92006DA325 /* Board.swift */; };
 		B3A396521FB39C8F00BCEA54 /* DotNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A396511FB39C8F00BCEA54 /* DotNode.swift */; };
@@ -39,6 +43,10 @@
 		29EBAFD61FB1D9160086F17E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		29EBAFD91FB1D9160086F17E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		29EBAFDB1FB1D9160086F17E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		29FF33691FB877D100E84284 /* SelectLevelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectLevelViewController.swift; sourceTree = "<group>"; };
+		29FF336B1FB878D600E84284 /* LevelCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelCollectionViewCell.swift; sourceTree = "<group>"; };
+		29FF336D1FB8816900E84284 /* LevelNumber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelNumber.swift; sourceTree = "<group>"; };
+		29FF336F1FB88D4600E84284 /* CustomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomViewController.swift; sourceTree = "<group>"; };
 		B30077A81FB1F360006DA325 /* Levels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Levels.swift; sourceTree = "<group>"; };
 		B30077AA1FB1FC92006DA325 /* Board.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Board.swift; sourceTree = "<group>"; };
 		B3A396511FB39C8F00BCEA54 /* DotNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DotNode.swift; sourceTree = "<group>"; };
@@ -88,6 +96,7 @@
 				B30077AA1FB1FC92006DA325 /* Board.swift */,
 				29C1716F1FB4FC2400EDAF28 /* Dot.swift */,
 				29C171711FB4FC8B00EDAF28 /* Line.swift */,
+				29FF336D1FB8816900E84284 /* LevelNumber.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -107,10 +116,13 @@
 		B3A396551FB4A14600BCEA54 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				29EBAFCF1FB1D9160086F17E /* GameScene.swift */,
-				29EBAFD11FB1D9160086F17E /* GameViewController.swift */,
 				294DAEEE1FB75103004256C2 /* MenuViewController.swift */,
 				294DAEF01FB7522A004256C2 /* GameModeViewController.swift */,
+				29FF33691FB877D100E84284 /* SelectLevelViewController.swift */,
+				29FF336B1FB878D600E84284 /* LevelCollectionViewCell.swift */,
+				29EBAFD11FB1D9160086F17E /* GameViewController.swift */,
+				29EBAFCF1FB1D9160086F17E /* GameScene.swift */,
+				29FF336F1FB88D4600E84284 /* CustomViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -202,12 +214,16 @@
 				B30077AB1FB1FC92006DA325 /* Board.swift in Sources */,
 				294DAEEF1FB75103004256C2 /* MenuViewController.swift in Sources */,
 				B3A396521FB39C8F00BCEA54 /* DotNode.swift in Sources */,
+				29FF336E1FB8816900E84284 /* LevelNumber.swift in Sources */,
+				29FF336C1FB878D600E84284 /* LevelCollectionViewCell.swift in Sources */,
 				29EBAFD01FB1D9160086F17E /* GameScene.swift in Sources */,
 				294DAEF11FB7522A004256C2 /* GameModeViewController.swift in Sources */,
+				29FF336A1FB877D100E84284 /* SelectLevelViewController.swift in Sources */,
 				29C171701FB4FC2400EDAF28 /* Dot.swift in Sources */,
 				B30077A91FB1F360006DA325 /* Levels.swift in Sources */,
 				29C171741FB4FD4A00EDAF28 /* Extentions ond other.swift in Sources */,
 				29C171721FB4FC8B00EDAF28 /* Line.swift in Sources */,
+				29FF33701FB88D4600E84284 /* CustomViewController.swift in Sources */,
 				29EBAFD21FB1D9160086F17E /* GameViewController.swift in Sources */,
 				29EBAFCA1FB1D9160086F17E /* AppDelegate.swift in Sources */,
 			);

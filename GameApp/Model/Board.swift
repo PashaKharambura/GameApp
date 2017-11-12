@@ -64,7 +64,7 @@ class Board: NSObject {
                 }
             }
         }
-        return result.filter{ $0 != dot}
+        return result.filter { $0 != dot && $0.type != .outside }
     }
     
     // Not forgot to write!
@@ -131,6 +131,6 @@ class Board: NSObject {
     // Return dot with column&row
     
     func haveDot(onColumn col: Int, andRow row: Int) -> Dot? {
-        return dots.first(where: { $0.row == row && $0.column == col && $0.type != .outside })
+        return dots.first(where: { $0.row == row && $0.column == col })
     }
 }

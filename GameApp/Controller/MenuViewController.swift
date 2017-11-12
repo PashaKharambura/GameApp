@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MenuViewController: UIViewController {
+class MenuViewController: CustomViewController {
     @IBOutlet weak var playButton: UIButton! {
         didSet {
             playButton.layer.cornerRadius = 20
@@ -29,7 +29,6 @@ class MenuViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
     }
     
     @IBAction func exitGame(_ sender: Any) {

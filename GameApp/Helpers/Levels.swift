@@ -12,7 +12,7 @@ import UIKit
 class Levels {
     static let colomns: CGFloat = 12
     static let rows: CGFloat = 12
-    
+
     static let lvl1 =
     ".0123456789." +
     "d          A" +
@@ -40,5 +40,21 @@ class Levels {
     ".V        I." +
     ".UT       J." +
     "..SRQPONMLK."
+    
+    static let lvl3 =
+    ".0123456789." +
+    "d          A" +
+    ".c        B." +
+    ".b        C." +
+    ".a        D." +
+    ".Z        E." +
+    ".Y        F." +
+    ".X        G." +
+    ".W        H." +
+    ".V        I." +
+    "U          J" +
+    ".TSRQPONMLK."
+    
+    static let levels = [lvl1, lvl2, lvl3]
     
 }
