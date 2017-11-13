@@ -23,8 +23,8 @@ class Figure: NSObject {
     var type: FigureType
     var perimeter = 0.0
     
-    init(dots: [Dot], lines: [Line]) {
-        self.dots = dots
+    init(lines: [Line]) {
+        self.dots = Figure.getUniqueDotsFrom(lines: lines)
         for line in lines {
             perimeter += line.lenght
         }
@@ -47,6 +47,21 @@ class Figure: NSObject {
         }
         
         super.init()
+    }
+    
+    static func getUniqueDotsFrom(lines: [Line]) -> [Dot] {
+        var result = [Dot]()
+        
+        for line in lines {
+            if !result.contains(where: { $0 == line.toDot }) {
+                result.append(line.toDot)
+            }
+            if !result.contains(where: { $0 == line.fromDot }) {
+                result.append(line.fromDot)
+            }
+        }
+        
+        return result
     }
     
 }

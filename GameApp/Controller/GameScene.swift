@@ -116,11 +116,11 @@ class GameScene: SKScene, BoardDelegate {
         dotNodes.forEach { path.addLine(to: $0.tapArea.position) }
         path.close()
         
-        let triangleNode = SKShapeNode(path: path.cgPath)
-        triangleNode.fillColor = .black
-        triangleNode.strokeColor = .black
+        let figureNode = SKShapeNode(path: path.cgPath)
+        figureNode.fillColor = .black
+        figureNode.strokeColor = .black
         
-        addChild(triangleNode)
+        addChild(figureNode)
     }
     
     // Get position from column&row

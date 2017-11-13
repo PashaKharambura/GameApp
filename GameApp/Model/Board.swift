@@ -149,7 +149,7 @@ class Board: NSObject {
     func checkingForCloedArea(previousDot: Dot, tappedDot: Dot) {
         let dotFirst = tappedDot
         let dotSecond = previousDot
-        var potencialFigure = [dotFirst, dotSecond]
+//        var potencialFigure = [dotFirst, dotSecond]
         var linesArray = [Line(fromDot: dotFirst, toDot: dotSecond)]
         
         for dotThird in dotSecond.connections  {
@@ -157,14 +157,14 @@ class Board: NSObject {
                 for dotFourth in dotThird.connections {
                     if dotFourth.connections.count != 0 && !(dotFourth == dotSecond) {
                         if dotFourth == dotFirst {
-//                            print("Малий трикутник!")
+                            print("Малий трикутник!")
                             linesArray.append(contentsOf: [Line(fromDot: dotSecond, toDot: dotThird), Line(fromDot: dotThird, toDot: dotFirst)])
-                            potencialFigure.append(dotThird)
+//                            potencialFigure.append(dotThird)
                         } else {
                             for dotFift in dotFourth.connections {
                                 if dotFift == dotFirst {
-//                                    print("Якийсь чотирикутник або великий трикутник!")
-                                    potencialFigure.append(contentsOf: [dotThird, dotFourth])
+                                    print("Якийсь чотирикутник або великий трикутник!")
+//                                    potencialFigure.append(contentsOf: [dotThird, dotFourth])
                                     linesArray.append(contentsOf: [Line(fromDot: dotSecond, toDot: dotThird), Line(fromDot: dotThird, toDot: dotFourth), Line(fromDot: dotFourth, toDot: dotFirst)])
                                 }
                             }
@@ -174,11 +174,28 @@ class Board: NSObject {
             }
         }
         
-        if potencialFigure.count > 2 {
-            let figure = Figure(dots: potencialFigure, lines: linesArray)
-            figures.insert(figure)
-            delegate?.handleNewFigure(figure)
+        if linesArray.count > 1 {
+            for figure in getFiguresFrom(lines: linesArray) {
+                figures.insert(figure)
+                delegate?.handleNewFigure(figure)                
+            }
         }
+    }
+    
+    func getFiguresFrom(lines: [Line]) -> [Figure] {
+        var result = [Figure]()
+        
+        if lines.count > 4 {
+            var temp = Array(lines[0...3])
+            result.append(Figure(lines: temp))
+            
+            temp = Array(lines[4..<lines.count])
+            result.append(Figure(lines: temp))
+        } else {
+            result = [Figure(lines: lines)]
+        }
+        
+        return result
     }
     
 }
