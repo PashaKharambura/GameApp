@@ -149,23 +149,31 @@ class Board: NSObject {
     func checkingForCloedArea(previousDot: Dot, tappedDot: Dot) {
         let dotFirst = tappedDot
         let dotSecond = previousDot
-//        var potencialFigure = [dotFirst, dotSecond]
-        var linesArray = [Line(fromDot: dotFirst, toDot: dotSecond)]
+        var startedFigures = Set<Figure>()
         
         for dotThird in dotSecond.connections  {
             if dotThird.connections.count != 0 && !(dotThird == dotFirst) {
                 for dotFourth in dotThird.connections {
                     if dotFourth.connections.count != 0 && !(dotFourth == dotSecond) {
                         if dotFourth == dotFirst {
-                            print("Малий трикутник!")
-                            linesArray.append(contentsOf: [Line(fromDot: dotSecond, toDot: dotThird), Line(fromDot: dotThird, toDot: dotFirst)])
-//                            potencialFigure.append(dotThird)
+//                            print("Малий трикутник!")
+                            let figure = Figure(line: Line(fromDot: dotFirst, toDot: dotSecond))
+                            figure.add(line: Line(fromDot: dotSecond, toDot: dotThird))
+                            figure.add(line: Line(fromDot: dotThird, toDot: dotFirst))
+                            if figure.finishFigure() {
+                                startedFigures.insert(figure)
+                            }
                         } else {
                             for dotFift in dotFourth.connections {
                                 if dotFift == dotFirst {
-                                    print("Якийсь чотирикутник або великий трикутник!")
-//                                    potencialFigure.append(contentsOf: [dotThird, dotFourth])
-                                    linesArray.append(contentsOf: [Line(fromDot: dotSecond, toDot: dotThird), Line(fromDot: dotThird, toDot: dotFourth), Line(fromDot: dotFourth, toDot: dotFirst)])
+//                                    print("Якийсь чотирикутник або великий трикутник!")
+                                    let figure = Figure(line: Line(fromDot: dotFirst, toDot: dotSecond))
+                                    figure.add(line: Line(fromDot: dotSecond, toDot: dotThird))
+                                    figure.add(line: Line(fromDot: dotThird, toDot: dotFourth))
+                                    figure.add(line: Line(fromDot: dotFourth, toDot: dotFirst))
+                                    if figure.finishFigure() {
+                                        startedFigures.insert(figure)
+                                    }
                                 }
                             }
                         }
@@ -174,28 +182,10 @@ class Board: NSObject {
             }
         }
         
-        if linesArray.count > 1 {
-            for figure in getFiguresFrom(lines: linesArray) {
-                figures.insert(figure)
-                delegate?.handleNewFigure(figure)                
-            }
+        startedFigures.forEach {
+            figures.insert($0)
+            delegate?.handleNewFigure($0)
         }
-    }
-    
-    func getFiguresFrom(lines: [Line]) -> [Figure] {
-        var result = [Figure]()
-        
-        if lines.count > 4 {
-            var temp = Array(lines[0...3])
-            result.append(Figure(lines: temp))
-            
-            temp = Array(lines[4..<lines.count])
-            result.append(Figure(lines: temp))
-        } else {
-            result = [Figure(lines: lines)]
-        }
-        
-        return result
     }
     
 }

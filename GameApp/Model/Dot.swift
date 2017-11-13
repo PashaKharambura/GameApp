@@ -35,7 +35,15 @@ class Dot: NSObject {
         super.init()
     }
     
+    func isConnected(to dot: Dot) -> Bool {
+        return connections.contains(where: { $0 == dot } )
+    }
+    
     static func == (lhs: Dot, rhs: Dot) -> Bool {
         return lhs.index == rhs.index
+    }
+    
+    override var description: String {
+        return "\(index)"
     }
 }

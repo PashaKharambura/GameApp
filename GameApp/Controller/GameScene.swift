@@ -105,11 +105,11 @@ class GameScene: SKScene, BoardDelegate {
         }
     }
     
-    // Draw figure
-    
+    /// Draw any figure
+    ///
+    /// - Parameter figure: figure to draw
     func handleNewFigure(_ figure: Figure) {
         var dotNodes = getNodesFrom(dots: figure.dots)
-        print("got an \(figure.type)")
         
         let path = UIBezierPath()
         path.move(to: dotNodes.removeFirst().tapArea.position)
