@@ -15,3 +15,7 @@ extension Character {
     }
     
 }
+
+func sqr(_ value: Int) -> Double {
+    return Double(value*value)
+}

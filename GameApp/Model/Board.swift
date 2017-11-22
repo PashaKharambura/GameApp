@@ -63,12 +63,8 @@ class Board: NSObject {
         for i in -1...1 {
             for j in -1...1 {
                 if let temp = haveDot(onColumn: dot.column + i, andRow: dot.row + j) {
-                    if !temp.connections.contains(dot) {
-                        if !( (i + j == 2 || i + j == 0 || i + j == -2) && linesArrayContains(line: (Line(fromDot: haveDot(onColumn: dot.column + i, andRow: dot.row)!, toDot: haveDot(onColumn: dot.column, andRow: dot.row + j)!)))) {
-                            if !blockedLines.contains(where: { $0 == Line(fromDot: dot, toDot: temp) }) {
-                                result.insert(temp, at: 0)
-                            }
-                         }
+                    if !temp.connections.contains(dot) && !blockedLines.contains(where: { $0.isEqual(to: Line(fromDot: dot, toDot: temp)) }) {
+                            result.insert(temp, at: 0)
                     }
                 }
             }
@@ -76,15 +72,6 @@ class Board: NSObject {
         return result.filter { $0 != dot && $0.type != .outside }
     }
     
-    // Not forgot to write!
-    
-    func lineIntersectAnotherLine(line: Line) -> Bool {
-        if line.fromDot.column > line.toDot.column && line.fromDot.row < line.toDot.column {
-            
-        }
-        
-        return false
-    }
     
     // Create border
     
@@ -109,9 +96,16 @@ class Board: NSObject {
         let line = Line(fromDot: firstDot, toDot: secondDot)
         lines.insert(line)
         if lines.count > 40 {
-            print(line.diagonal)
-            print(line.angel)
-            checkingForCloedArea(previousDot: firstDot, tappedDot: secondDot)
+            if line.diagonal != .none {
+                let mirrorLine = line.mirrorLine
+                
+                if dots.contains(where: { $0 == mirrorLine.fromDot } ) && dots.contains(where: { $0 == mirrorLine.toDot } ) {
+                    blockedLines.insert(mirrorLine)
+                }
+            }
+            if firstDot.connections.count >= 2 && secondDot.connections.count >= 2 {
+                checkingForCloedArea(previousDot: firstDot, tappedDot: secondDot)
+            }
 //            analizeFigures(from: firstDot, to: secondDot)
         }
     }
@@ -119,7 +113,7 @@ class Board: NSObject {
 //    func analizeFigures(from startDot: Dot, to finishDot: Dot) {
 //        print(finishDot.connections.count)
 //        print(startDot.connections.count)
-//        if startDot.connections.count >= 2 && finishDot.connections.count >= 2 {
+//        if  {
 //            print("finding figure")
 //        }
 //    }
@@ -184,6 +178,7 @@ class Board: NSObject {
         
         startedFigures.forEach {
             figures.insert($0)
+            blockedLines.formUnion($0.getBlockedLines())
             delegate?.handleNewFigure($0)
         }
     }

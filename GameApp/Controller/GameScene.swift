@@ -166,7 +166,12 @@ class GameScene: SKScene, BoardDelegate {
     
     func fillAvailableDotsFrom(dots: [Dot], callback: @escaping ()->()) {
         availableDots = getNodesFrom(dots: dots)
-        callback()
+        if availableDots!.count != 0 {
+            callback()
+        } else {
+            selectedDot = nil
+            availableDots = nil
+        }
     }
     
     func getNodesFrom(dots: [Dot]) -> [DotNode] {

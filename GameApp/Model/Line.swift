@@ -16,6 +16,9 @@ class Line: NSObject {
         case none
     }
     
+    static let diagonalLenght = sqrt(2)
+    static let straightLenght: Double = 1
+    
     var fromDot: Dot
     var toDot: Dot
     var diagonal: DiagonalType {
@@ -26,11 +29,28 @@ class Line: NSObject {
         }
     }
     
-    var lenght: Double {
-        switch diagonal {
-        case .none: return 1
-        default: return 1.4
+    var mirrorLine: Line {
+        var result: Line
+        
+        if diagonal == .none {
+            result = self
+        } else {
+            let top = fromDot.row > toDot.row ? fromDot : toDot
+            let bottom = top == fromDot ? toDot : fromDot
+            
+            if diagonal == .bottomTop {
+                result = Line(fromDot: Dot(type: .inside, column: top.column - 1, row: top.row, char: " "), toDot: Dot(type: .inside, column: bottom.column + 1, row: bottom.row, char: " "))
+            } else {
+                result = Line(fromDot: Dot(type: .inside, column: top.column + 1, row: top.row, char: " "), toDot: Dot(type: .inside, column: bottom.column - 1, row: bottom.row, char: " "))
+            }
+            
         }
+        
+        return result
+    }
+    
+    var lenght: Double {
+        return sqrt(sqr(fromDot.row - toDot.row) + sqr(fromDot.column - toDot.column))
     }
     
     private var reversed: Line {
@@ -59,7 +79,7 @@ class Line: NSObject {
         return fromDot == dot ? toDot : fromDot
     }
     
-    func lineIsEqual(to line: Line) -> Bool {
+    func isEqual(to line: Line) -> Bool {
         return self == line || self.reversed == line
     }
     

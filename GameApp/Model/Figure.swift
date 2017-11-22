@@ -73,6 +73,34 @@ class Figure: NSObject {
         return false
     }
     
+    /// Returns lines, that cannot be created after figure is finished.
+    ///
+    /// - Returns: Set of blocked lines
+    func getBlockedLines() -> Set<Line> {
+        var result = Set<Line>()
+        if type != nil {
+            switch type! {
+            case .rhombus:
+                let minRow = dots.map{ $0.row }.min()!
+                let minCol = dots.map{ $0.column }.min()!
+                let center = Dot(type: .inside, column: minCol + 1, row: minRow + 1, char: " ")
+                for dot in dots {
+                    result.insert(Line(fromDot: center, toDot: dot))
+                }
+            case .bigTriangle, .parallelogram:
+                if Line(fromDot: dots[0], toDot: dots[2]).lenght == 1 {
+                    result.insert(Line(fromDot: dots[0], toDot: dots[2]))
+                } else {
+                    result.insert(Line(fromDot: dots[1], toDot: dots[3]))
+                }
+            default:
+                break
+            }
+        }
+        
+        return result
+    }
+    
     /// Adds line's lenght to perimeter and diagonal angle to diagonal angle summ.
     ///
     /// - Parameter line: line to take lengh and diagonal angle
@@ -84,17 +112,17 @@ class Figure: NSObject {
     /// Trying to set type of figure based on perimeter (triangle, square, rhombus) or diagonal angle summ (bigTriangle, parallelogram). If it fails, type stays nil
     private func setType() {
         switch perimeter! {
-        case 3.4:
+        case Line.diagonalLenght + Line.straightLenght * 2:
             type = .triangle
-        case 4:
+        case Line.straightLenght * 4:
             type = .square
-        case 4.8:
+        case Line.diagonalLenght * 2 + Line.straightLenght * 2 :
             if diagonalAngleSumm == 180 {
                 type = .bigTriangle
             } else {
                 type = .parallelogram
             }
-        case 5.6:
+        case Line.diagonalLenght * 4:
             type = .rhombus
         default:
             break
@@ -106,10 +134,6 @@ class Figure: NSObject {
         var sorted = [dots[0]]
         let copyDots = Array(dots.dropFirst())
         var helperDots = [Dot]()
-        
-        for dot in dots {
-            print(dot.description)
-        }
         
         for dot in copyDots {
             if dot.isConnected(to: sorted.last!) {
@@ -126,10 +150,6 @@ class Figure: NSObject {
         
         if let lastDot = helperDots.first {
             sorted.append(lastDot)
-        }
-        
-        for dot in sorted {
-            print(dot.description)
         }
         
         self.dots = sorted

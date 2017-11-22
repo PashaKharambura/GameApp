@@ -20,10 +20,10 @@ class Dot: NSObject {
     var type: DotType
     var connections = [Dot]()
     var index: Int
+    
     var column: Int {
         return index % 12
     }
-    
     var row: Int {
         return index / 12
     }
@@ -33,6 +33,10 @@ class Dot: NSObject {
         self.index = index
         self.char = char
         super.init()
+    }
+    
+    convenience init(type: DotType, column: Int, row: Int, char: Character) {
+        self.init(type: type, index: row * Board.height + column, char: char)
     }
     
     func isConnected(to dot: Dot) -> Bool {
