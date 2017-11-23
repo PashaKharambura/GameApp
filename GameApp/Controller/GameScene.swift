@@ -22,7 +22,8 @@ class GameScene: SKScene, BoardDelegate {
     var startY = CGFloat()
     
     var selectedDot: DotNode?
-    var gVC = GameViewController()
+    
+    var drewColor = UIColor.black
     
     override func didMove(to view: SKView) {
         board = Board(levelString: Levels.levels[LevelNumber.instanse.index])
@@ -76,9 +77,9 @@ class GameScene: SKScene, BoardDelegate {
         lineNode.fillColor = color
         lineNode.strokeColor = color
         lineNode.lineWidth = width
+        lineNode.zPosition = 1
         
         addChild(lineNode)
-        
     }
     
     // Make field dots
@@ -117,8 +118,9 @@ class GameScene: SKScene, BoardDelegate {
         path.close()
         
         let figureNode = SKShapeNode(path: path.cgPath)
-        figureNode.fillColor = .black
-        figureNode.strokeColor = .black
+        figureNode.fillColor = drewColor
+        figureNode.strokeColor = drewColor
+        figureNode.zPosition = 1
         
         addChild(figureNode)
     }
@@ -134,28 +136,37 @@ class GameScene: SKScene, BoardDelegate {
     // Touches processing
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if let touch1 = touches.first {
-            if let obj = atPoint(touch1.location(in: self)) as? SKShapeNode {
-                if let dotNode = getDotNodeFrom(shapeNode: obj) {
-
-                    if selectedDot == nil { // first dot tap
-                        selectedDot = dotNode
-                        fillAvailableDotsFrom(dots: board.getDotsNear(dot: board.dots[dotNode.index]), callback: showMoves)
-                    } else { // second dot tap or diselect
-                        let secondDot = dotNode
-                        if availableDots!.contains(secondDot) {
-                            board.connectTwoDost(board.dots[selectedDot!.index], board.dots[secondDot.index])
-                            drawLine(from: selectedDot!.tapArea.position, to: secondDot.tapArea.position, with: .black, and: 3)
-                        }
-                        selectedDot = nil
-                        hideMoves()
-                    }
-                }
-            } else {
-                selectedDot = nil
-                hideMoves()
-            }
+        if let touch = touches.first {
+            handleNew(touch: touch)
         }
+    }
+    
+    func handleNew(touch: UITouch) {
+        if let obj = atPoint(touch.location(in: self)) as? SKShapeNode {
+            if let dotNode = getDotNodeFrom(shapeNode: obj) {
+                if selectedDot == nil { // first dot tap
+                    selectedDot = dotNode
+                    fillAvailableDotsFrom(dots: board.getDotsNear(dot: board.dots[dotNode.index]), callback: showMoves)
+                } else { // second dot tap or diselect
+                    let secondDot = dotNode
+                    if availableDots!.contains(secondDot) {
+//                        board.connectTwoDost(board.dots[selectedDot!.index], board.dots[secondDot.index])
+//                        drawLine(from: selectedDot!.tapArea.position, to: secondDot.tapArea.position, with: drewColor, and: 3)
+                        makeMove(to: secondDot)
+                    }
+                    selectedDot = nil
+                    hideMoves()
+                }
+            }
+        } else {
+            selectedDot = nil
+            hideMoves()
+        }
+    }
+    
+    func makeMove(to finishDot: DotNode) {
+        board.connectTwoDost(board.dots[selectedDot!.index], board.dots[finishDot.index])
+        drawLine(from: selectedDot!.tapArea.position, to: finishDot.tapArea.position, with: drewColor, and: 3)
     }
     
     func getDotNodeFrom(shapeNode: SKShapeNode) -> DotNode? {

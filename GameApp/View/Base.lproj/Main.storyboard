@@ -1,19 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="qkJ-JN-kfa">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="qkJ-JN-kfa">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="Kefa.ttf">
-            <string>Kefa-Regular</string>
-        </array>
-        <array key="TimesNewRomanBold.ttf">
-            <string>TimesNewRomanPS-BoldMT</string>
+        <array key="Chalkduster.ttf">
+            <string>Chalkduster</string>
         </array>
     </customFonts>
     <scenes>
@@ -29,45 +26,48 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PAPER WARS" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vsl-xV-TEE">
-                                <rect key="frame" x="10" y="94" width="355" height="29"/>
-                                <fontDescription key="fontDescription" name="Kefa-Regular" family="Kefa" pointSize="25"/>
+                                <rect key="frame" x="10" y="94" width="355" height="32"/>
+                                <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="25"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z6P-CS-5gc">
-                                <rect key="frame" x="127" y="231" width="120" height="40"/>
+                                <rect key="frame" x="127" y="234" width="120" height="40"/>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="VLl-75-vWn"/>
                                     <constraint firstAttribute="width" constant="120" id="eZO-9P-l94"/>
                                 </constraints>
+                                <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="17"/>
                                 <state key="normal" title="Play">
-                                    <color key="titleColor" red="0.36146518589999999" green="0.75026172400000002" blue="0.14854839440000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
                                     <segue destination="pqR-yo-TAJ" kind="show" id="lm7-IN-uWM"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sba-CL-QmZ">
-                                <rect key="frame" x="127" y="301" width="120" height="40"/>
+                                <rect key="frame" x="127" y="304" width="120" height="40"/>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="WCh-Dy-sNx"/>
                                     <constraint firstAttribute="width" constant="120" id="dGm-r2-wqV"/>
                                 </constraints>
+                                <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="17"/>
                                 <state key="normal" title="Ranking">
-                                    <color key="titleColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p5m-9h-lye">
-                                <rect key="frame" x="127" y="371" width="120" height="40"/>
+                                <rect key="frame" x="127" y="374" width="120" height="40"/>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="FtX-YM-wYV"/>
                                     <constraint firstAttribute="width" constant="120" id="zOj-pb-bb7"/>
                                 </constraints>
+                                <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="17"/>
                                 <state key="normal" title="Exit">
-                                    <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="0.7285691352739726" colorSpace="calibratedRGB"/>
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="exitGame:" destination="bfw-8c-3az" eventType="touchUpInside" id="n52-ry-2pK"/>
@@ -137,6 +137,23 @@
                     <view key="view" multipleTouchEnabled="YES" contentMode="scaleToFill" id="3se-qz-xqx" customClass="SKView">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E6g-Ix-uvh">
+                                <rect key="frame" x="13" y="97" width="30" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="30" id="Sgd-xE-V3Z"/>
+                                    <constraint firstAttribute="height" constant="30" id="rRN-kl-Fxg"/>
+                                </constraints>
+                                <state key="normal" image="back"/>
+                                <connections>
+                                    <action selector="goBack:" destination="BV1-FR-VrT" eventType="touchUpInside" id="QMY-4v-ohH"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="E6g-Ix-uvh" firstAttribute="leading" secondItem="4qk-I5-YsI" secondAttribute="leading" constant="13" id="7qo-dI-398"/>
+                            <constraint firstItem="E6g-Ix-uvh" firstAttribute="top" secondItem="4qk-I5-YsI" secondAttribute="top" constant="33" id="Upz-81-BFq"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="4qk-I5-YsI"/>
                     </view>
                 </viewController>
@@ -156,52 +173,60 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select game mode" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gxi-p8-28u">
-                                <rect key="frame" x="10" y="94" width="355" height="29"/>
-                                <fontDescription key="fontDescription" name="Kefa-Regular" family="Kefa" pointSize="25"/>
+                                <rect key="frame" x="10" y="94" width="355" height="32"/>
+                                <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="25"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Sg-By-K4w">
-                                <rect key="frame" x="117" y="231" width="140" height="40"/>
+                                <rect key="frame" x="88.5" y="234" width="197" height="40"/>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="140" id="FBe-1w-MyG"/>
                                     <constraint firstAttribute="height" constant="40" id="baI-Zq-JMm"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <state key="normal" title="Play with bot">
-                                    <color key="titleColor" red="0.36146518589999999" green="0.75026172400000002" blue="0.14854839440000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="17"/>
+                                <state key="normal" title="Singleplayer">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
                                     <segue destination="u9x-EM-mvG" kind="show" id="faF-P6-dVM"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sfJ-xp-i3y">
-                                <rect key="frame" x="117" y="301" width="140" height="40"/>
+                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sfJ-xp-i3y">
+                                <rect key="frame" x="88.5" y="304" width="197" height="40"/>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="140" id="bfR-JT-Bh8"/>
+                                    <constraint firstAttribute="width" constant="140" id="bfR-JT-Bh8"/>
                                     <constraint firstAttribute="height" constant="40" id="oUq-Rt-S57"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <state key="normal" title="Play with friend">
-                                    <color key="titleColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="17"/>
+                                <state key="normal" title="Multiplayer (online)">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="deviceRGB"/>
                                 </state>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="bfR-JT-Bh8"/>
+                                    </mask>
+                                </variation>
                                 <connections>
                                     <segue destination="u9x-EM-mvG" kind="show" id="1Wg-C6-e2v"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Q8-XU-6qT">
-                                <rect key="frame" x="117" y="371" width="140" height="40"/>
+                            <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Q8-XU-6qT">
+                                <rect key="frame" x="88.5" y="374" width="197" height="40"/>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="140" id="NLh-yE-NdO"/>
                                     <constraint firstAttribute="height" constant="40" id="R6i-SZ-bNJ"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <state key="normal" title="Play with another player">
-                                    <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="0.7285691353" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="17"/>
+                                <state key="normal" title="Multiplayer (offline)">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="deviceRGB"/>
                                 </state>
+                                <connections>
+                                    <segue destination="u9x-EM-mvG" kind="show" id="bVE-gk-RvQ"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LDy-Yj-11d">
                                 <rect key="frame" x="20" y="607" width="40" height="40"/>
@@ -220,7 +245,7 @@
                                 <state key="normal" image="share"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X1F-Il-P8x">
-                                <rect key="frame" x="10" y="93" width="30" height="30"/>
+                                <rect key="frame" x="10" y="94.5" width="30" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="30" id="2fz-4L-c6d"/>
                                     <constraint firstAttribute="height" constant="30" id="pb4-LX-1Rw"/>
@@ -243,10 +268,12 @@
                             <constraint firstItem="LDy-Yj-11d" firstAttribute="leading" secondItem="Mm0-M8-7uh" secondAttribute="leading" constant="20" id="QXG-uo-iiy"/>
                             <constraint firstItem="sfJ-xp-i3y" firstAttribute="centerX" secondItem="KRc-Lx-KsK" secondAttribute="centerX" id="R1C-KO-XdH"/>
                             <constraint firstItem="Am0-lA-ROD" firstAttribute="top" secondItem="KRc-Lx-KsK" secondAttribute="top" id="c86-Pq-ib0"/>
+                            <constraint firstItem="2Sg-By-K4w" firstAttribute="width" secondItem="sfJ-xp-i3y" secondAttribute="width" id="d0k-0M-hRB"/>
                             <constraint firstItem="X1F-Il-P8x" firstAttribute="leading" secondItem="Mm0-M8-7uh" secondAttribute="leading" constant="10" id="dOJ-Mt-y24"/>
                             <constraint firstItem="6Q8-XU-6qT" firstAttribute="centerX" secondItem="KRc-Lx-KsK" secondAttribute="centerX" id="izk-rG-Pj4"/>
                             <constraint firstItem="Am0-lA-ROD" firstAttribute="trailing" secondItem="Mm0-M8-7uh" secondAttribute="trailing" id="jFp-Up-et6"/>
                             <constraint firstItem="Gxi-p8-28u" firstAttribute="leading" secondItem="Mm0-M8-7uh" secondAttribute="leading" constant="10" id="k8o-Ev-EdK"/>
+                            <constraint firstItem="sfJ-xp-i3y" firstAttribute="width" secondItem="6Q8-XU-6qT" secondAttribute="width" id="r6M-D6-j8t"/>
                             <constraint firstItem="Mm0-M8-7uh" firstAttribute="bottom" secondItem="EPZ-wa-mAf" secondAttribute="bottom" constant="20" id="sE0-D6-Nrg"/>
                             <constraint firstItem="Gxi-p8-28u" firstAttribute="top" secondItem="Mm0-M8-7uh" secondAttribute="top" constant="30" id="svU-7n-ZCM"/>
                             <constraint firstItem="6Q8-XU-6qT" firstAttribute="top" secondItem="sfJ-xp-i3y" secondAttribute="bottom" constant="30" id="vyz-gc-sbR"/>
@@ -278,8 +305,8 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select level" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ey9-iS-hB0">
-                                <rect key="frame" x="10" y="94" width="355" height="29"/>
-                                <fontDescription key="fontDescription" name="Kefa-Regular" family="Kefa" pointSize="25"/>
+                                <rect key="frame" x="10" y="94" width="355" height="32"/>
+                                <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="25"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -323,8 +350,8 @@
                                                     <rect key="frame" x="10" y="10" width="141" height="139"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Level 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ULZ-R0-if8">
-                                                    <rect key="frame" x="36" y="63.5" width="89.5" height="32.5"/>
-                                                    <fontDescription key="fontDescription" name="TimesNewRomanPS-BoldMT" family="Times New Roman" pointSize="29"/>
+                                                    <rect key="frame" x="24" y="62" width="113.5" height="35.5"/>
+                                                    <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="28"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -347,7 +374,7 @@
                                 </cells>
                             </collectionView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9ko-7T-TZS">
-                                <rect key="frame" x="10" y="93" width="30" height="30"/>
+                                <rect key="frame" x="10" y="94.5" width="30" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="DV7-2K-piv"/>
                                     <constraint firstAttribute="width" constant="30" id="nBZ-Vt-ewa"/>

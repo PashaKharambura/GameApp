@@ -11,17 +11,27 @@ import SpriteKit
 import GameplayKit
 
 class GameViewController: CustomViewController {
-   
+    
+    var gameMode = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
             if let view = self.view as! SKView? {
-            // Load the SKScene from 'GameScene.sks'
-            if let scene = SKScene(fileNamed: "GameScene") {
+//             Load the SKScene from 'GameScene.sks'
+                var gameSceneClass: SKScene.Type
+
+                switch gameMode {
+                case 2: gameSceneClass = OfflineGameScene.self
+                    print("offline")
+                default: gameSceneClass = GameScene.self
+                }
+                
+                if let scene = gameSceneClass.init(fileNamed: "GameScene") {
                 // Set the scale mode to scale to fit the window
                 scene.scaleMode = .aspectFill
                 scene.size = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+                print(scene.size)
                 
                 // Present the scene
                 view.presentScene(scene)
@@ -38,13 +48,13 @@ class GameViewController: CustomViewController {
         return true
     }
 
-    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-        if UIDevice.current.userInterfaceIdiom == .phone {
-            return .allButUpsideDown
-        } else {
-            return .all
-        }
-    }
+//    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+//        if UIDevice.current.userInterfaceIdiom == .phone {
+//            return .allButUpsideDown
+//        } else {
+//            return .all
+//        }
+//    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -54,4 +64,9 @@ class GameViewController: CustomViewController {
     override var prefersStatusBarHidden: Bool {
         return true
     }
+    
+    @IBAction func goBack(_ sender: UIButton) {
+        navigationController?.popViewController(animated: true)
+    }
+    
 }

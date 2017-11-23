@@ -26,7 +26,10 @@ class Board: NSObject {
     var figures = Set<Figure>()
     var blockedLines = Set<Line>()
     
+    var currentPlayer: Player
+    
     init(levelString: String) {
+        currentPlayer = Player.allPlayers[0]
         super.init()
         createDotsArray(from: levelString)
         createBorderLine()

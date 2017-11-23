@@ -22,6 +22,8 @@ class SelectLevelViewController: CustomViewController, UICollectionViewDataSourc
     
     let levelsArray = Levels.levels
     
+    var gameMode = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -42,7 +44,8 @@ class SelectLevelViewController: CustomViewController, UICollectionViewDataSourc
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let cell = sender as! UICollectionViewCell
         let index = levelCollectionView.indexPath(for: cell)!.row
-        let _ = segue.destination as! GameViewController
+        let nextVC = segue.destination as! GameViewController
+        nextVC.gameMode = gameMode
         LevelNumber.instanse.index = index
     }
 

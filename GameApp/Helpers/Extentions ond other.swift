@@ -7,6 +7,12 @@
 //
 
 import Foundation
+import UIKit
+
+func sqr(_ value: Int) -> Double {
+    return Double(value*value)
+}
+
 
 extension Character {
     
@@ -16,6 +22,3 @@ extension Character {
     
 }
 
-func sqr(_ value: Int) -> Double {
-    return Double(value*value)
-}

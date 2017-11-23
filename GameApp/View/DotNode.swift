@@ -22,10 +22,11 @@ class DotNode: NSObject {
         visibleDot.fillColor = color
         visibleDot.strokeColor = color
         visibleDot.name = "visibleDot"
+        visibleDot.zPosition = -1
         
         tapArea.position = position
         tapArea.name = "tapArea"
-        tapArea.zPosition = 999
+        tapArea.zPosition = 2
         tapArea.strokeColor = .clear
         
         tapArea.addChild(visibleDot)
