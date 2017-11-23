@@ -76,14 +76,16 @@ class Figure: NSObject {
     /// Returns lines, that cannot be created after figure is finished.
     ///
     /// - Returns: Set of blocked lines
-    func getBlockedLines() -> Set<Line> {
+    func getBlockedLines() -> (Set<Line>, Int?) {
         var result = Set<Line>()
+        var index: Int?
         if type != nil {
             switch type! {
             case .rhombus:
                 let minRow = dots.map{ $0.row }.min()!
                 let minCol = dots.map{ $0.column }.min()!
                 let center = Dot(type: .inside, column: minCol + 1, row: minRow + 1, char: " ")
+                index = center.index
                 for dot in dots {
                     result.insert(Line(fromDot: center, toDot: dot))
                 }
@@ -98,7 +100,7 @@ class Figure: NSObject {
             }
         }
         
-        return result
+        return (result, index)
     }
     
     /// Adds line's lenght to perimeter and diagonal angle to diagonal angle summ.

@@ -10,6 +10,7 @@ import SpriteKit
 import GameplayKit
 
 class GameScene: SKScene, BoardDelegate {
+    
     let brightBlue = UIColor(displayP3Red: 0.0, green: 0.0, blue: 1.0, alpha: 0.3)
 
     var dotNodes = [DotNode]()
@@ -119,10 +120,17 @@ class GameScene: SKScene, BoardDelegate {
         
         let figureNode = SKShapeNode(path: path.cgPath)
         figureNode.fillColor = drewColor
-        figureNode.strokeColor = drewColor
+        figureNode.strokeColor = .clear
         figureNode.zPosition = 1
         
         addChild(figureNode)
+    }
+    
+    func handleFinish() {
+//        let ac = UIAlertController(title: "\(board.currentPlayer.color.capitalized) winner!", message: "Back?", preferredStyle: .alert)
+//        ac.addAction(UIAlertAction(title: "OK", style: .cancel))
+//
+        print("\(board.currentPlayer.color.capitalized) winner!")
     }
     
     // Get position from column&row

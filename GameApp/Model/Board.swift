@@ -11,6 +11,7 @@ import SpriteKit
 
 protocol BoardDelegate {
     func handleNewFigure(_ dots: Figure)
+    func handleFinish()
 }
 
 class Board: NSObject {
@@ -50,6 +51,15 @@ class Board: NSObject {
             dots.append(element)
         }
         borderDots = borderDots.sorted { $0.char.code < $1.char.code }
+    }
+    
+    func checkForEndGame() {
+        for dot in dots.filter({ $0.type != .outside }) {
+            if dot.connections.count < 2 {
+                return
+            }
+        }
+        delegate?.handleFinish()
     }
     
     // Check if array of all lines have line with two dots
@@ -108,6 +118,7 @@ class Board: NSObject {
             }
             if firstDot.connections.count >= 2 && secondDot.connections.count >= 2 {
                 checkingForCloedArea(previousDot: firstDot, tappedDot: secondDot)
+                checkForEndGame()
             }
 //            analizeFigures(from: firstDot, to: secondDot)
         }
@@ -181,7 +192,13 @@ class Board: NSObject {
         
         startedFigures.forEach {
             figures.insert($0)
-            blockedLines.formUnion($0.getBlockedLines())
+            let blokedLines = $0.getBlockedLines()
+            blockedLines.formUnion(blokedLines.0)
+            if let centerIndex = blokedLines.1 {
+                for dot in $0.dots {
+                    connectTwoDost(dot, dots[centerIndex])
+                }
+            }
             delegate?.handleNewFigure($0)
         }
     }
