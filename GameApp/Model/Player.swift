@@ -10,6 +10,7 @@ import UIKit
 
 class Player: NSObject {
 
+    var name: String
     var color: String
     var score = 0
     
@@ -21,10 +22,19 @@ class Player: NSObject {
         }
     }
     
+    var drewColor: UIColor {
+        return color == "blue" ? .blue : .red
+    }
+    
     static let allPlayers = [Player(color: "blue"), Player(color: "red")]
     
     private init(color: String) {
         self.color = color
+        if color == "blue" {
+            self.name = "Player1"
+        } else {
+            self.name = "Player2"
+        }
         
         super.init()
     }

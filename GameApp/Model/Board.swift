@@ -9,6 +9,11 @@
 import UIKit
 import SpriteKit
 
+/// ---
+/// # Mehtods:
+///     func handleNewFigure(_ dots: Figure)
+///     func handleFinish()
+/// ---
 protocol BoardDelegate {
     func handleNewFigure(_ dots: Figure)
     func handleFinish()
@@ -54,6 +59,7 @@ class Board: NSObject {
     }
     
     func checkForEndGame() {
+        print("Checking for end game")
         for dot in dots.filter({ $0.type != .outside }) {
             if dot.connections.count < 2 {
                 return
@@ -118,7 +124,6 @@ class Board: NSObject {
             }
             if firstDot.connections.count >= 2 && secondDot.connections.count >= 2 {
                 checkingForCloedArea(previousDot: firstDot, tappedDot: secondDot)
-                checkForEndGame()
             }
 //            analizeFigures(from: firstDot, to: secondDot)
         }
@@ -190,17 +195,36 @@ class Board: NSObject {
             }
         }
         
-        startedFigures.forEach {
-            figures.insert($0)
-            let blokedLines = $0.getBlockedLines()
-            blockedLines.formUnion(blokedLines.0)
-            if let centerIndex = blokedLines.1 {
-                for dot in $0.dots {
-                    connectTwoDost(dot, dots[centerIndex])
+        print("found \(startedFigures.count) figures")
+        for (index, newFigure) in startedFigures.enumerated() {
+            if startedFigures.count > 1 {
+                if !figures.contains(where: { oldFigure in
+                    return oldFigure.isIntersectsWith(figure: newFigure)
+                }) {
+                    addFigure(newFigure)
+                    if index == startedFigures.count {
+                        checkForEndGame()
+                    }
+                }
+            } else {
+                addFigure(newFigure)
+                if index == startedFigures.count {
+                    checkForEndGame()
                 }
             }
-            delegate?.handleNewFigure($0)
         }
+    }
+    
+    func addFigure(_ newFigure: Figure) {
+        figures.insert(newFigure)
+        let newBlockedLines = newFigure.getBlockedLines()
+        blockedLines.formUnion(newBlockedLines.0)
+        if let centerIndex = newBlockedLines.1 {
+            for dot in newFigure.dots {
+                dots[centerIndex].connections.append(dot)
+            }
+        }
+        delegate?.handleNewFigure(newFigure)
     }
     
 }

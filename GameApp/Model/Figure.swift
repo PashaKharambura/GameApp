@@ -157,4 +157,24 @@ class Figure: NSObject {
         self.dots = sorted
     }
     
+    func isIntersectsWith(figure: Figure) -> Bool {
+        var selfDots = dots
+        var comperableDots = figure.dots
+        if figure.type! == .rhombus {
+            let minRow = comperableDots.map{ $0.row }.min()!
+            let minCol = comperableDots.map{ $0.column }.min()!
+            let center = Dot(type: .inside, column: minCol + 1, row: minRow + 1, char: " ")
+            comperableDots.append(center)
+        } else if self.type! == .rhombus {
+            let minRow = selfDots.map{ $0.row }.min()!
+            let minCol = selfDots.map{ $0.column }.min()!
+            let center = Dot(type: .inside, column: minCol + 1, row: minRow + 1, char: " ")
+            selfDots.append(center)
+        }
+        let commonDots = selfDots.filter( { selfDot in
+            comperableDots.contains(where: { $0 == selfDot })
+        })
+        return commonDots.count > 2
+    }
+    
 }

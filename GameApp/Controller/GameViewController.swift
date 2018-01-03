@@ -31,7 +31,6 @@ class GameViewController: CustomViewController {
                 // Set the scale mode to scale to fit the window
                 scene.scaleMode = .aspectFill
                 scene.size = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
-                print(scene.size)
                 
                 // Present the scene
                 view.presentScene(scene)
