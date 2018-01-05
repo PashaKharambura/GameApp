@@ -107,23 +107,25 @@ class GameScene: SKScene, BoardDelegate {
         }
     }
     
-    /// Draw any figure
+    /// Draw any figures
     ///
-    /// - Parameter figure: figure to draw
-    func handleNewFigure(_ figure: Figure) {
-        var dotNodes = getNodesFrom(dots: figure.dots)
-        
-        let path = UIBezierPath()
-        path.move(to: dotNodes.removeFirst().tapArea.position)
-        dotNodes.forEach { path.addLine(to: $0.tapArea.position) }
-        path.close()
-        
-        let figureNode = SKShapeNode(path: path.cgPath)
-        figureNode.fillColor = drewColor
-        figureNode.strokeColor = .clear
-        figureNode.zPosition = 1
-        
-        addChild(figureNode)
+    /// - Parameter figures: figures to draw
+    func handleNewFigures(_ figures: [Figure]) {
+        for figure in figures {
+            var dotNodes = getNodesFrom(dots: figure.dots)
+            
+            let path = UIBezierPath()
+            path.move(to: dotNodes.removeFirst().tapArea.position)
+            dotNodes.forEach { path.addLine(to: $0.tapArea.position) }
+            path.close()
+            
+            let figureNode = SKShapeNode(path: path.cgPath)
+            figureNode.fillColor = drewColor
+            figureNode.strokeColor = .clear
+            figureNode.zPosition = 1
+            
+            addChild(figureNode)
+        }
     }
     
     func handleFinish() {

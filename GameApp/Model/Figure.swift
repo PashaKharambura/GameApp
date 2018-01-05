@@ -24,6 +24,16 @@ class Figure: NSObject {
     // dots: contains all dots that figure have. Dots dosent repeat.
     var type: FigureType?
     var dots: [Dot]
+    var cgRect: CGRect? {
+        if type != nil {
+            let minX = dots.map{ $0.column }.min()!
+            let minY = dots.map{ $0.row }.min()!
+            let maxX = dots.map{ $0.column }.max()!
+            let maxY = dots.map{ $0.row }.max()!
+            return CGRect(x: minX, y: minY, width: maxX - minX, height: maxY - minY)
+        }
+        return nil
+    }
     
     // MARK: private properties
     // all are used in the process of creating figure. after its done they gone too (= nil)
@@ -95,6 +105,9 @@ class Figure: NSObject {
                 } else {
                     result.insert(Line(fromDot: dots[1], toDot: dots[3]))
                 }
+            case .square:
+                result.insert(Line(fromDot: dots[0], toDot: dots[2]))
+                result.insert(Line(fromDot: dots[1], toDot: dots[3]))
             default:
                 break
             }

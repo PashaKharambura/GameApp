@@ -73,28 +73,11 @@ class OfflineGameScene: GameScene {
 //        }
     }
     
-    override func handleNewFigure(_ figure: Figure) {
-        super.handleNewFigure(figure)
-        
-//        swapActivePlayer()
-        board.currentPlayer.score += figure.type!.rawValue
-//        if p2Line.isHidden {
-//            let scoreToAddLabel = SKLabelNode(text: "+\(figure.type!.rawValue)")
-//            scoreToAddLabel.fontName = p1Score!.fontName!
-//            scoreToAddLabel.fontSize = p1Score!.fontSize
-//            scoreToAddLabel.fontColor = p1Score!.fontColor!
-////            scoreToAddLabel.position = p1Score?.frame.maxX
-//            p1Score?.addChild(scoreToAddLabel)
-//            p1Score?.text = "Score: \(board.currentPlayer.score)"
-//        } else {
-//            let scoreToAddLabel = SKLabelNode(text: "+\(figure.type!.rawValue)")
-//            scoreToAddLabel.fontName = p2Score!.fontName!
-//            scoreToAddLabel.fontSize = p2Score!.fontSize
-//            scoreToAddLabel.fontColor = p2Score!.fontColor!
-//            p2Score?.addChild(scoreToAddLabel)
-//            p2Score?.text = "Score: \(board.currentPlayer.score)"
-//        }
-        activePlayerInfo().addScore(figure.type!.rawValue, totalScore: board.currentPlayer.score)
+    override func handleNewFigures(_ figures: [Figure]) {
+        super.handleNewFigures(figures)
+        let scoreToAdd = figures.reduce(0, { $0 + $1.type!.rawValue })
+        board.currentPlayer.score += scoreToAdd
+        activePlayerInfo().addScore(scoreToAdd, totalScore: board.currentPlayer.score)
     }
     
     override func makeMove(to finishDot: DotNode) {

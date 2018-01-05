@@ -11,11 +11,11 @@ import SpriteKit
 
 /// ---
 /// # Mehtods:
-///     func handleNewFigure(_ dots: Figure)
+///     func handleNewFigures(_ figures: [Figure])
 ///     func handleFinish()
 /// ---
 protocol BoardDelegate {
-    func handleNewFigure(_ dots: Figure)
+    func handleNewFigures(_ figures: [Figure])
     func handleFinish()
 }
 
@@ -61,10 +61,11 @@ class Board: NSObject {
     func checkForEndGame() {
         print("Checking for end game")
         for dot in dots.filter({ $0.type != .outside }) {
-            if dot.connections.count < 2 {
+            if dot.connections.count < 3 {
                 return
             }
         }
+        print(dots.map { $0.connections.count } )
         delegate?.handleFinish()
     }
     
@@ -123,7 +124,11 @@ class Board: NSObject {
                 }
             }
             if firstDot.connections.count >= 2 && secondDot.connections.count >= 2 {
-                checkingForCloedArea(previousDot: firstDot, tappedDot: secondDot)
+                var figures = findFigures(previousDot: firstDot, tappedDot: secondDot)
+                print("found \(figures.count) figures")
+                // filter figures, removing figures that intersects with existed figures
+                figures = figures.filter { !isFigureIntersectsWithExistedFigures($0) }
+                addFigures(figures)
             }
 //            analizeFigures(from: firstDot, to: secondDot)
         }
@@ -159,10 +164,10 @@ class Board: NSObject {
     
     // Checking for figure 
     
-    func checkingForCloedArea(previousDot: Dot, tappedDot: Dot) {
+    func findFigures(previousDot: Dot, tappedDot: Dot) -> [Figure] {
         let dotFirst = tappedDot
         let dotSecond = previousDot
-        var startedFigures = Set<Figure>()
+        var figures = [Figure]()
         
         for dotThird in dotSecond.connections  {
             if dotThird.connections.count != 0 && !(dotThird == dotFirst) {
@@ -174,7 +179,7 @@ class Board: NSObject {
                             figure.add(line: Line(fromDot: dotSecond, toDot: dotThird))
                             figure.add(line: Line(fromDot: dotThird, toDot: dotFirst))
                             if figure.finishFigure() {
-                                startedFigures.insert(figure)
+                                figures.append(figure)
                             }
                         } else {
                             for dotFift in dotFourth.connections {
@@ -185,7 +190,7 @@ class Board: NSObject {
                                     figure.add(line: Line(fromDot: dotThird, toDot: dotFourth))
                                     figure.add(line: Line(fromDot: dotFourth, toDot: dotFirst))
                                     if figure.finishFigure() {
-                                        startedFigures.insert(figure)
+                                        figures.append(figure)
                                     }
                                 }
                             }
@@ -195,36 +200,62 @@ class Board: NSObject {
             }
         }
         
-        print("found \(startedFigures.count) figures")
-        for (index, newFigure) in startedFigures.enumerated() {
-            if startedFigures.count > 1 {
-                if !figures.contains(where: { oldFigure in
-                    return oldFigure.isIntersectsWith(figure: newFigure)
-                }) {
-                    addFigure(newFigure)
-                    if index == startedFigures.count {
-                        checkForEndGame()
-                    }
-                }
-            } else {
-                addFigure(newFigure)
-                if index == startedFigures.count {
-                    checkForEndGame()
-                }
-            }
-        }
+        return figures
+//        for (index, newFigure) in startedFigures.enumerated() {
+//            print(newFigure.type)
+//            if startedFigures.count > 1 {
+//                if !figures.contains(where: { oldFigure in
+//                    return oldFigure.isIntersectsWith(figure: newFigure)
+//                }) {
+//                    addFigure(newFigure)
+//                    print("index = ", index)
+//                    if index == startedFigures.count {
+//                        checkForEndGame()
+//                    }
+//                }
+//            } else {
+//                addFigure(newFigure)
+//            }
+//        }
     }
     
-    func addFigure(_ newFigure: Figure) {
-        figures.insert(newFigure)
-        let newBlockedLines = newFigure.getBlockedLines()
-        blockedLines.formUnion(newBlockedLines.0)
-        if let centerIndex = newBlockedLines.1 {
-            for dot in newFigure.dots {
-                dots[centerIndex].connections.append(dot)
+    func isFigureIntersectsWithExistedFigures(_ figure: Figure) -> Bool {
+        if figure.type! != .triangle  {
+            let nearbyFigures = figures.filter({ figure.cgRect!.intersects($0.cgRect!) })
+            if nearbyFigures.count > 0 {
+                for nearbyFigure in nearbyFigures {
+                    if figure.isIntersectsWith(figure: nearbyFigure) {
+                        return true
+                    }
+                }
             }
         }
-        delegate?.handleNewFigure(newFigure)
+        
+        return false
+    }
+    
+    func addFigures(_ newFigures: [Figure]) {
+        for newFigure in newFigures {
+            figures.insert(newFigure)
+            let newBlockedLines = newFigure.getBlockedLines()
+            
+            // adding blocked lines rom new figure to all blocked lines
+            blockedLines.formUnion(newBlockedLines.0)
+            
+            // for rhombus adding connections to center dot to pass game finish
+            if let centerIndex = newBlockedLines.1 {
+                for dot in newFigure.dots {
+                    dots[centerIndex].connections.append(dot)
+                }
+            }
+            for dot in newFigure.dots {
+                while dots[dot.index].connections.count < 3 {
+                    dots[dot.index].connections.append(dots[dot.index])
+                }
+            }
+        }
+        delegate?.handleNewFigures(newFigures)
+        checkForEndGame()
     }
     
 }
