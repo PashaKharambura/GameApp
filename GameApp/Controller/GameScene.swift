@@ -37,26 +37,32 @@ class GameScene: SKScene, BoardDelegate {
     // Make and paint background grid
     
     func createGrid() {
-        let screen = scene?.frame
-        let newStartY = startY - CGFloat(Int((startY/delta)))*(delta)
+//        let screen = scene?.frame
+//        let newStartY = startY - CGFloat(Int((startY/delta)))*(delta)
+//
+//        for i in 0..<Board.width {
+//            let fromPoint = CGPoint(x: startX + CGFloat(i)*delta, y: 0)
+//            let toPoint = CGPoint(x: startX + CGFloat(i)*delta , y: (screen?.height)!)
+//
+//            // MARK: customise lines later!!!!!!!
+//
+//            drawLine(from: fromPoint, to: toPoint, with: brightBlue, and: 1.0)
+//        }
+//
+//        for j in 0..<Int((screen?.height)!/delta) {
+//
+//            let fromPoint = CGPoint(x: 0, y: newStartY + CGFloat(j)*delta)
+//            let toPoint = CGPoint(x: (screen?.width)! , y: newStartY + CGFloat(j)*delta)
+//
+//            drawLine(from: fromPoint, to: toPoint, with: brightBlue, and: 1.0)
+//        }
+        let gridNode = SKShapeNode(path: Board.getGridCGPath())
+        gridNode.lineWidth = 1
+        gridNode.fillColor = brightBlue
+        gridNode.strokeColor = brightBlue
+        gridNode.zPosition = 1
         
-        for i in 0..<Board.width {
-            let fromPoint = CGPoint(x: startX + CGFloat(i)*delta, y: 0)
-            let toPoint = CGPoint(x: startX + CGFloat(i)*delta , y: (screen?.height)!)
-            
-            // MARK: customise lines later!!!!!!!
-            
-            drawLine(from: fromPoint, to: toPoint, with: brightBlue, and: 1.0)
-        }
-        
-        for j in 0..<Int((screen?.height)!/delta) {
-            
-            let fromPoint = CGPoint(x: 0, y: newStartY + CGFloat(j)*delta)
-            let toPoint = CGPoint(x: (screen?.width)! , y: newStartY + CGFloat(j)*delta)
-            
-            drawLine(from: fromPoint, to: toPoint, with: brightBlue, and: 1.0)
-        }
-        
+        addChild(gridNode)
     }
     
     // Draw border lines

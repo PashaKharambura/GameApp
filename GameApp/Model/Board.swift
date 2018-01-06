@@ -125,10 +125,9 @@ class Board: NSObject {
             }
             if firstDot.connections.count >= 2 && secondDot.connections.count >= 2 {
                 var figures = findFigures(previousDot: firstDot, tappedDot: secondDot)
-                print("found \(figures.count) figures")
                 // filter figures, removing figures that intersects with existed figures
                 figures = figures.filter { !isFigureIntersectsWithExistedFigures($0) }
-                addFigures(figures)
+                if figures.count != 0 { addFigures(figures) }
             }
 //            analizeFigures(from: firstDot, to: secondDot)
         }
@@ -256,6 +255,34 @@ class Board: NSObject {
         }
         delegate?.handleNewFigures(newFigures)
         checkForEndGame()
+    }
+    
+    static func getGridCGPath() -> CGPath {
+        let result = UIBezierPath()
+        let delta = (UIScreen.main.bounds.maxX)/CGFloat(Board.width)
+        let startX = delta/2
+        let startY = (UIScreen.main.bounds.midY) - CGFloat(Board.height)/2 * delta
+        let newStartY = startY - CGFloat(Int((startY/delta))) * delta
+
+        // vertical
+        for i in 0..<Board.width {
+            let startPoint = CGPoint(x: startX + CGFloat(i) * delta, y: 0)
+            let finishPoint = CGPoint(x: startX + CGFloat(i) * delta, y: UIScreen.main.bounds.height)
+            
+            result.move(to: startPoint)
+            result.addLine(to: finishPoint)
+        }
+        
+        // horizontal
+        for i in 0..<Int(UIScreen.main.bounds.height/delta) {
+            let startPoint = CGPoint(x: 0, y: newStartY + CGFloat(i) * delta)
+            let finishPoint = CGPoint(x: UIScreen.main.bounds.width, y: newStartY + CGFloat(i) * delta)
+            
+            result.move(to: startPoint)
+            result.addLine(to: finishPoint)
+        }
+        
+        return result.cgPath
     }
     
 }
