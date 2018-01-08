@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Chalkduster.ttf">
+            <string>Chalkduster</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MenuView" customModule="GameApp" customModuleProvider="target"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="NJz-Y5-M2j" userLabel="First">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Main Menu" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uyd-Sx-KFI">
+                    <rect key="frame" x="111.5" y="20" width="152" height="47"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="152" id="R26-NZ-hZs"/>
+                        <constraint firstAttribute="height" constant="47" id="y9x-eA-QcY"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="25"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fqy-cU-MWX" customClass="MenuButton" customModule="GameApp" customModuleProvider="target">
+                    <rect key="frame" x="68.5" y="87" width="238" height="34"/>
+                    <state key="normal" title="Play"/>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mL7-fB-XTr" customClass="MenuButton" customModule="GameApp" customModuleProvider="target">
+                    <rect key="frame" x="68.5" y="195" width="238" height="34"/>
+                    <state key="normal" title="Ranking"/>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GGJ-S0-zJy" customClass="MenuButton" customModule="GameApp" customModuleProvider="target">
+                    <rect key="frame" x="68.5" y="141" width="238" height="34"/>
+                    <state key="normal" title="Options"/>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="GGJ-S0-zJy" firstAttribute="width" secondItem="fqy-cU-MWX" secondAttribute="width" id="Bca-Tq-Cfw"/>
+                <constraint firstItem="GGJ-S0-zJy" firstAttribute="centerX" secondItem="s3B-di-7dV" secondAttribute="centerX" id="PsZ-mW-Euk"/>
+                <constraint firstItem="Uyd-Sx-KFI" firstAttribute="centerX" secondItem="s3B-di-7dV" secondAttribute="centerX" id="QcK-02-iJl"/>
+                <constraint firstItem="mL7-fB-XTr" firstAttribute="width" secondItem="GGJ-S0-zJy" secondAttribute="width" id="QzJ-Fy-1c9"/>
+                <constraint firstItem="GGJ-S0-zJy" firstAttribute="top" secondItem="fqy-cU-MWX" secondAttribute="bottom" constant="20" id="dcG-3K-fWh"/>
+                <constraint firstItem="mL7-fB-XTr" firstAttribute="centerX" secondItem="s3B-di-7dV" secondAttribute="centerX" id="dm0-wg-3Iy"/>
+                <constraint firstItem="Uyd-Sx-KFI" firstAttribute="top" secondItem="s3B-di-7dV" secondAttribute="top" id="guF-64-8Tn"/>
+                <constraint firstItem="mL7-fB-XTr" firstAttribute="top" secondItem="GGJ-S0-zJy" secondAttribute="bottom" constant="20" id="l3h-SM-Q3x"/>
+                <constraint firstItem="fqy-cU-MWX" firstAttribute="leading" secondItem="Uyd-Sx-KFI" secondAttribute="trailing" constant="-195" id="sGr-Ys-616"/>
+                <constraint firstItem="fqy-cU-MWX" firstAttribute="centerX" secondItem="s3B-di-7dV" secondAttribute="centerX" id="v6r-eU-zxc"/>
+                <constraint firstItem="fqy-cU-MWX" firstAttribute="top" secondItem="Uyd-Sx-KFI" secondAttribute="bottom" constant="20" id="zUu-gC-3PD"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="s3B-di-7dV"/>
+            <point key="canvasLocation" x="-288.5" y="-244.5"/>
+        </view>
+    </objects>
+</document>
