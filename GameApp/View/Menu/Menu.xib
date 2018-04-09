@@ -1,22 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <array key="Chalkduster.ttf">
-            <string>Chalkduster</string>
-        </array>
-    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MenuView" customModule="GameApp" customModuleProvider="target"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="NJz-Y5-M2j" userLabel="First">
+        <view contentMode="scaleToFill" restorationIdentifier="first" id="NJz-Y5-M2j" userLabel="First">
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
@@ -30,35 +25,86 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fqy-cU-MWX" customClass="MenuButton" customModule="GameApp" customModuleProvider="target">
-                    <rect key="frame" x="68.5" y="87" width="238" height="34"/>
+                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fqy-cU-MWX" customClass="MenuButton" customModule="GameApp" customModuleProvider="target">
+                    <rect key="frame" x="87.5" y="93" width="200" height="34"/>
                     <state key="normal" title="Play"/>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mL7-fB-XTr" customClass="MenuButton" customModule="GameApp" customModuleProvider="target">
-                    <rect key="frame" x="68.5" y="195" width="238" height="34"/>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mL7-fB-XTr" customClass="MenuButton" customModule="GameApp" customModuleProvider="target">
+                    <rect key="frame" x="147" y="221" width="81" height="34"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <state key="normal" title="Ranking"/>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GGJ-S0-zJy" customClass="MenuButton" customModule="GameApp" customModuleProvider="target">
-                    <rect key="frame" x="68.5" y="141" width="238" height="34"/>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GGJ-S0-zJy" customClass="MenuButton" customModule="GameApp" customModuleProvider="target">
+                    <rect key="frame" x="147" y="157" width="81" height="34"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <state key="normal" title="Options"/>
                 </button>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="GGJ-S0-zJy" firstAttribute="width" secondItem="fqy-cU-MWX" secondAttribute="width" id="Bca-Tq-Cfw"/>
-                <constraint firstItem="GGJ-S0-zJy" firstAttribute="centerX" secondItem="s3B-di-7dV" secondAttribute="centerX" id="PsZ-mW-Euk"/>
-                <constraint firstItem="Uyd-Sx-KFI" firstAttribute="centerX" secondItem="s3B-di-7dV" secondAttribute="centerX" id="QcK-02-iJl"/>
-                <constraint firstItem="mL7-fB-XTr" firstAttribute="width" secondItem="GGJ-S0-zJy" secondAttribute="width" id="QzJ-Fy-1c9"/>
-                <constraint firstItem="GGJ-S0-zJy" firstAttribute="top" secondItem="fqy-cU-MWX" secondAttribute="bottom" constant="20" id="dcG-3K-fWh"/>
-                <constraint firstItem="mL7-fB-XTr" firstAttribute="centerX" secondItem="s3B-di-7dV" secondAttribute="centerX" id="dm0-wg-3Iy"/>
-                <constraint firstItem="Uyd-Sx-KFI" firstAttribute="top" secondItem="s3B-di-7dV" secondAttribute="top" id="guF-64-8Tn"/>
-                <constraint firstItem="mL7-fB-XTr" firstAttribute="top" secondItem="GGJ-S0-zJy" secondAttribute="bottom" constant="20" id="l3h-SM-Q3x"/>
-                <constraint firstItem="fqy-cU-MWX" firstAttribute="leading" secondItem="Uyd-Sx-KFI" secondAttribute="trailing" constant="-195" id="sGr-Ys-616"/>
-                <constraint firstItem="fqy-cU-MWX" firstAttribute="centerX" secondItem="s3B-di-7dV" secondAttribute="centerX" id="v6r-eU-zxc"/>
-                <constraint firstItem="fqy-cU-MWX" firstAttribute="top" secondItem="Uyd-Sx-KFI" secondAttribute="bottom" constant="20" id="zUu-gC-3PD"/>
+                <constraint firstItem="Uyd-Sx-KFI" firstAttribute="top" secondItem="s3B-di-7dV" secondAttribute="top" id="G3b-KG-mTk"/>
+                <constraint firstItem="Uyd-Sx-KFI" firstAttribute="centerX" secondItem="NJz-Y5-M2j" secondAttribute="centerX" id="IIT-Q9-pNj"/>
+                <constraint firstItem="fqy-cU-MWX" firstAttribute="top" secondItem="Uyd-Sx-KFI" secondAttribute="bottom" constant="26" id="JRa-Uf-L6T"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="s3B-di-7dV"/>
             <point key="canvasLocation" x="-288.5" y="-244.5"/>
+        </view>
+        <view contentMode="scaleToFill" restorationIdentifier="play" id="grq-qy-gK2" userLabel="Play">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Play" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c3h-aI-aiW">
+                    <rect key="frame" x="111.5" y="30" width="152" height="47"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="47" id="CTO-l1-cqd"/>
+                        <constraint firstAttribute="width" constant="152" id="JXS-RH-4gt"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="25"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="krE-Ma-6OB" customClass="MenuButton" customModule="GameApp" customModuleProvider="target">
+                    <rect key="frame" x="68.5" y="103" width="238" height="34"/>
+                    <state key="normal" title="Singleplayer"/>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="45p-8k-Yoo" customClass="MenuButton" customModule="GameApp" customModuleProvider="target">
+                    <rect key="frame" x="79" y="231" width="200" height="34"/>
+                    <state key="normal" title="Ranking"/>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D8i-LU-ryq" customClass="MenuButton" customModule="GameApp" customModuleProvider="target">
+                    <rect key="frame" x="79" y="167" width="200" height="34"/>
+                    <state key="normal" title="Options"/>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="krE-Ma-6OB" firstAttribute="leading" secondItem="c3h-aI-aiW" secondAttribute="trailing" constant="-195" id="ACB-NN-AV3"/>
+                <constraint firstItem="45p-8k-Yoo" firstAttribute="top" secondItem="D8i-LU-ryq" secondAttribute="bottom" constant="30" id="BeP-g0-fz0"/>
+                <constraint firstItem="krE-Ma-6OB" firstAttribute="centerX" secondItem="dPN-Oh-kGO" secondAttribute="centerX" id="Jag-Hr-73t"/>
+                <constraint firstItem="45p-8k-Yoo" firstAttribute="width" secondItem="D8i-LU-ryq" secondAttribute="width" id="QbP-5f-z8e"/>
+                <constraint firstItem="krE-Ma-6OB" firstAttribute="top" secondItem="c3h-aI-aiW" secondAttribute="bottom" constant="26" id="R0h-wR-QDS"/>
+                <constraint firstItem="c3h-aI-aiW" firstAttribute="top" secondItem="dPN-Oh-kGO" secondAttribute="top" constant="10" id="d3R-UL-aoc"/>
+                <constraint firstItem="D8i-LU-ryq" firstAttribute="top" secondItem="krE-Ma-6OB" secondAttribute="bottom" constant="30" id="iG2-TA-oQa"/>
+                <constraint firstItem="c3h-aI-aiW" firstAttribute="centerX" secondItem="dPN-Oh-kGO" secondAttribute="centerX" id="jpB-G0-1UU"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="dPN-Oh-kGO"/>
+            <point key="canvasLocation" x="194" y="-242"/>
+        </view>
+        <view contentMode="scaleToFill" restorationIdentifier="options" id="fJl-Cg-GKh" userLabel="Options">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Options" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hYE-65-xcT">
+                    <rect key="frame" x="166" y="230" width="42" height="21"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <viewLayoutGuide key="safeArea" id="vk7-9r-pa5"/>
+            <point key="canvasLocation" x="701" y="-245"/>
         </view>
     </objects>
 </document>

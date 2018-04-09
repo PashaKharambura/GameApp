@@ -39,7 +39,7 @@ import UIKit
     
     func setupView() {
         let shape = CAShapeLayer()
-        shape.path = Board.getGridCGPath()
+        shape.path = .getBoardGrid()
         shape.strokeColor = UIColor.gray.cgColor
         layer.addSublayer(shape)
         layer.zPosition = -1

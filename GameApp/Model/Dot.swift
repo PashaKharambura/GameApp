@@ -36,7 +36,7 @@ class Dot: NSObject {
     }
     
     convenience init(type: DotType, column: Int, row: Int, char: Character) {
-        self.init(type: type, index: row * Board.height + column, char: char)
+        self.init(type: type, index: row * Constants.boardHeight + column, char: char)
     }
     
     func isConnected(to dot: Dot) -> Bool {

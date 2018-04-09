@@ -37,7 +37,7 @@ class GameScene: SKScene, BoardDelegate {
     // Make and paint background grid
     
     func createGrid() {
-        let gridNode = SKShapeNode(path: Board.getGridCGPath())
+        let gridNode = SKShapeNode(path: .getBoardGrid())
         gridNode.lineWidth = 1
         gridNode.fillColor = brightBlue
         gridNode.strokeColor = brightBlue
@@ -73,9 +73,9 @@ class GameScene: SKScene, BoardDelegate {
     // Make field dots
     
     func generateLevelBackground() {
-        delta = ((scene?.frame.maxX)!)/CGFloat(Board.width)
+        delta = ((scene?.frame.maxX)!)/CGFloat(Constants.boardWidth)
         startX = delta/2
-        startY = (scene?.frame.midY)! - CGFloat(Board.height)/2 * delta
+        startY = (scene?.frame.midY)! - CGFloat(Constants.boardHeight)/2 * delta
     
         for dot in board.dots {
             if dot.type != .outside {
