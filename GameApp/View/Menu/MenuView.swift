@@ -12,9 +12,8 @@ import UIKit
 
     var contentView: UIView!
     
-    var buttons: [MenuButton]! {
-        let result = contentView.subviews.filter { type(of: $0) == MenuButton.self } as? [MenuButton]
-        return result
+	var buttons: [MenuButton]! {
+        return contentView.subviews.filter { $0 is MenuButton } as? [MenuButton]
     }
     
     static var allMenuViews: [UIView]! {
@@ -44,21 +43,24 @@ import UIKit
 
     func setupView() {
         contentView = loadFromNib()
-        
-        contentView.frame = bounds
-        
-        contentView.autoresizingMask = [UIViewAutoresizing.flexibleWidth, UIViewAutoresizing.flexibleHeight]
-        
+        contentView.translatesAutoresizingMaskIntoConstraints = false
         addSubview(contentView)
+		
+		contentView.topAnchor.constraint(equalTo: topAnchor).isActive = true
+		contentView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
+		contentView.widthAnchor.constraint(equalTo: widthAnchor).isActive = true
     }
     
     func loadFromNib() -> UIView! {
         let bundle = Bundle(for: type(of: self))
         let nib = UINib(nibName: "Menu", bundle: bundle)
         let view = nib.instantiate(withOwner: self, options: nil).first as? UIView
-//        print(nib.instantiate(withOwner: self, options: nil))
         
         return view
     }
+	
+	deinit {
+		print("deiniting \(self)")
+	}
     
 }

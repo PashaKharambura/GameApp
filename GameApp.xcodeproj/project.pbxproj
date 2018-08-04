@@ -24,6 +24,7 @@
 		29FF33701FB88D4600E84284 /* CustomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29FF336F1FB88D4600E84284 /* CustomViewController.swift */; };
 		B30077A91FB1F360006DA325 /* Levels.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30077A81FB1F360006DA325 /* Levels.swift */; };
 		B30077AB1FB1FC92006DA325 /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = B30077AA1FB1FC92006DA325 /* Board.swift */; };
+		B337D9652115DBA600D1C536 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = B337D9642115DBA600D1C536 /* Array.swift */; };
 		B35D5314200254030068AC40 /* Menu.xib in Resources */ = {isa = PBXBuildFile; fileRef = B35D5313200254030068AC40 /* Menu.xib */; };
 		B35D5317200256670068AC40 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35D5316200256670068AC40 /* MenuView.swift */; };
 		B35D531B200258350068AC40 /* MenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B35D531A200258350068AC40 /* MenuButton.swift */; };
@@ -59,6 +60,7 @@
 		29FF336F1FB88D4600E84284 /* CustomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomViewController.swift; sourceTree = "<group>"; };
 		B30077A81FB1F360006DA325 /* Levels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Levels.swift; sourceTree = "<group>"; };
 		B30077AA1FB1FC92006DA325 /* Board.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Board.swift; sourceTree = "<group>"; };
+		B337D9642115DBA600D1C536 /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		B35D5313200254030068AC40 /* Menu.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Menu.xib; sourceTree = "<group>"; };
 		B35D5316200256670068AC40 /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		B35D531A200258350068AC40 /* MenuButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuButton.swift; sourceTree = "<group>"; };
@@ -127,6 +129,7 @@
 			children = (
 				B386C84E207B8A2E00ED860E /* Character.swift */,
 				B386C852207B8BAD00ED860E /* CGPath.swift */,
+				B337D9642115DBA600D1C536 /* Array.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -288,6 +291,7 @@
 				B386C853207B8BAD00ED860E /* CGPath.swift in Sources */,
 				B386C84A207B880700ED860E /* Constants.swift in Sources */,
 				B3B8C5941FC60C53005880CD /* OfflineGameScene.swift in Sources */,
+				B337D9652115DBA600D1C536 /* Array.swift in Sources */,
 				B35D5317200256670068AC40 /* MenuView.swift in Sources */,
 				29FF336C1FB878D600E84284 /* LevelCollectionViewCell.swift in Sources */,
 				29EBAFD01FB1D9160086F17E /* GameScene.swift in Sources */,

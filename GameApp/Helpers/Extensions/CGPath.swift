@@ -11,7 +11,7 @@ import UIKit
 extension CGPath {
 	static func getBoardGrid() -> CGPath {
 		let result = UIBezierPath()
-		let delta = (UIScreen.main.bounds.maxX)/CGFloat(Constants.boardWidth)
+		let delta = Constants.cellSize
 		let startX = delta/2
 		let startY = (UIScreen.main.bounds.midY) - CGFloat(Constants.boardHeight)/2 * delta
 		let newStartY = startY - CGFloat(Int((startY/delta))) * delta
