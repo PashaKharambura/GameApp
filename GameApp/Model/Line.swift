@@ -39,9 +39,11 @@ class Line: NSObject {
             let bottom = top == fromDot ? toDot : fromDot
             
             if diagonal == .bottomTop {
-                result = Line(fromDot: Dot(type: .inside, column: top.column - 1, row: top.row, char: " "), toDot: Dot(type: .inside, column: bottom.column + 1, row: bottom.row, char: " "))
+                result = Line(fromDot: Dot(type: .inside, column: top.column - 1, row: top.row, char: " "),
+							  toDot: Dot(type: .inside, column: bottom.column + 1, row: bottom.row, char: " "))
             } else {
-                result = Line(fromDot: Dot(type: .inside, column: top.column + 1, row: top.row, char: " "), toDot: Dot(type: .inside, column: bottom.column - 1, row: bottom.row, char: " "))
+                result = Line(fromDot: Dot(type: .inside, column: top.column + 1, row: top.row, char: " "),
+							  toDot: Dot(type: .inside, column: bottom.column - 1, row: bottom.row, char: " "))
             }
             
         }

@@ -26,10 +26,10 @@ class Figure: NSObject {
     var dots: [Dot]
     var cgRect: CGRect? {
         if type != nil {
-            let minX = dots.map{ $0.column }.min()!
-            let minY = dots.map{ $0.row }.min()!
-            let maxX = dots.map{ $0.column }.max()!
-            let maxY = dots.map{ $0.row }.max()!
+            let minX = dots.map { $0.column }.min()!
+            let minY = dots.map { $0.row }.min()!
+            let maxX = dots.map { $0.column }.max()!
+            let maxY = dots.map { $0.row }.max()!
             return CGRect(x: minX, y: minY, width: maxX - minX, height: maxY - minY)
         }
         return nil
@@ -40,8 +40,7 @@ class Figure: NSObject {
     private var lines: [Line]?
     private var perimeter: Double? = 0.0
     private var diagonalAngleSumm: Double? = 0.0
-    
-    
+	
     /// Initializer
     ///
     /// - Parameter line: init accept first line, adds both dots from line to dots array, and use handleNewLine method.
@@ -92,8 +91,8 @@ class Figure: NSObject {
         if type != nil {
             switch type! {
             case .rhombus:
-                let minRow = dots.map{ $0.row }.min()!
-                let minCol = dots.map{ $0.column }.min()!
+                let minRow = dots.map { $0.row }.min()!
+                let minCol = dots.map { $0.column }.min()!
                 let center = Dot(type: .inside, column: minCol + 1, row: minRow + 1, char: " ")
                 index = center.index
                 for dot in dots {
@@ -123,8 +122,9 @@ class Figure: NSObject {
         perimeter! += line.lenght
         diagonalAngleSumm! += line.diagonal != .none ? line.angel : 0
     }
-    
-    /// Trying to set type of figure based on perimeter (triangle, square, rhombus) or diagonal angle summ (bigTriangle, parallelogram). If it fails, type stays nil
+	
+	// swiftlint:disable:next line_length
+	/// Trying to set type of figure based on perimeter (triangle, square, rhombus) or diagonal angle summ (bigTriangle, parallelogram). If it fails, type stays nil
     private func setType() {
         switch perimeter! {
         case Line.diagonalLenght + Line.straightLenght * 2:
@@ -174,17 +174,17 @@ class Figure: NSObject {
         var selfDots = dots
         var comperableDots = figure.dots
         if figure.type! == .rhombus {
-            let minRow = comperableDots.map{ $0.row }.min()!
-            let minCol = comperableDots.map{ $0.column }.min()!
+            let minRow = comperableDots.map { $0.row }.min()!
+            let minCol = comperableDots.map { $0.column }.min()!
             let center = Dot(type: .inside, column: minCol + 1, row: minRow + 1, char: " ")
             comperableDots.append(center)
         } else if self.type! == .rhombus {
-            let minRow = selfDots.map{ $0.row }.min()!
-            let minCol = selfDots.map{ $0.column }.min()!
+            let minRow = selfDots.map { $0.row }.min()!
+            let minCol = selfDots.map { $0.column }.min()!
             let center = Dot(type: .inside, column: minCol + 1, row: minRow + 1, char: " ")
             selfDots.append(center)
         }
-        let commonDots = selfDots.filter( { selfDot in
+        let commonDots = selfDots.filter({ selfDot in
             comperableDots.contains(where: { $0 == selfDot })
         })
         return commonDots.count > 2

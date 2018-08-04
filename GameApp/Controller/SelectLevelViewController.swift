@@ -9,8 +9,7 @@
 import UIKit
 
 class SelectLevelViewController: CustomViewController, UICollectionViewDataSource, UICollectionViewDelegate {
-    
-    
+	
     @IBOutlet weak var volumeButton: UIButton!
     @IBOutlet weak var shareButton: UIButton!
     @IBOutlet weak var levelCollectionView: UICollectionView! {
@@ -34,7 +33,9 @@ class SelectLevelViewController: CustomViewController, UICollectionViewDataSourc
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = levelCollectionView.dequeueReusableCell(withReuseIdentifier: "collectionCell", for: indexPath) as! LevelCollectionViewCell
+		guard
+			let cell = levelCollectionView.dequeueReusableCell(withReuseIdentifier: "collectionCell", for: indexPath) as? LevelCollectionViewCell
+			else { fatalError() }
         cell.levelLabel.text = "level \(indexPath.row + 1)"
         cell.levelImage.image = UIImage(named: "\(indexPath.row + 1)")
         
@@ -42,14 +43,13 @@ class SelectLevelViewController: CustomViewController, UICollectionViewDataSourc
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let cell = sender as! UICollectionViewCell
+		guard let cell = sender as? UICollectionViewCell else { fatalError() }
         let index = levelCollectionView.indexPath(for: cell)!.row
-        let nextVC = segue.destination as! GameViewController
-        nextVC.gameMode = gameMode
+        let nextVC = segue.destination as? GameViewController
+        nextVC?.gameMode = gameMode
         LevelNumber.instanse.index = index
     }
 
-    
     @IBAction func goBack(_ sender: Any) {
         navigationController?.popViewController(animated: true)
     }

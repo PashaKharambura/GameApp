@@ -14,14 +14,14 @@ import SpriteKit
 ///     func handleNewFigures(_ figures: [Figure])
 ///     func handleFinish()
 /// ---
-protocol BoardDelegate {
+protocol BoardDelegate: class {
     func handleNewFigures(_ figures: [Figure])
     func handleFinish()
 }
 
 class Board: NSObject {
     
-    var delegate: BoardDelegate?
+    weak var delegate: BoardDelegate?
     
     var dots = [Dot]()
     var borderDots = [Dot]()
@@ -43,13 +43,16 @@ class Board: NSObject {
     func createDotsArray(from levelString: String) {
         for char in levelString {
             let index = dots.count
-            var element: Dot
-            switch char {
-                case " ": element = Dot(type: .inside, index: index, char: char)
-                case ".": element = Dot(type: .outside, index: index, char: char)
-                default: element = Dot(type: .border, index: index, char: char)
-                         borderDots.append(element)
-            }
+			var element: Dot
+			switch char {
+			case " ":
+				element = Dot(type: .inside, index: index, char: char)
+			case ".":
+				element = Dot(type: .outside, index: index, char: char)
+			default:
+				element = Dot(type: .border, index: index, char: char)
+				borderDots.append(element)
+			}
             dots.append(element)
         }
         borderDots = borderDots.sorted { $0.char.code < $1.char.code }
@@ -57,13 +60,17 @@ class Board: NSObject {
     
     func checkForEndGame() {
         print("Checking for end game")
-        for dot in dots.filter({ $0.type != .outside }) {
-            if dot.connections.count < 3 {
-                return
-            }
-        }
-        print(dots.map { $0.connections.count } )
-        delegate?.handleFinish()
+		if !dots.contains(where: { $0.type != .outside && $0.connections.count < 3 }) {
+			print(dots.map { $0.connections.count })
+			delegate?.handleFinish()
+		}
+//        for dot in dots.filter({ $0.type != .outside }) {
+//            if dot.connections.count < 3 {
+//                return
+//            }
+//        }
+//        print(dots.map { $0.connections.count })
+//        delegate?.handleFinish()
     }
     
     // Check if array of all lines have line with two dots
@@ -80,7 +87,9 @@ class Board: NSObject {
         for i in -1...1 {
             for j in -1...1 {
                 if let temp = haveDot(onColumn: dot.column + i, andRow: dot.row + j) {
-                    if !temp.connections.contains(dot) && !blockedLines.contains(where: { $0.isEqual(to: Line(fromDot: dot, toDot: temp)) }) {
+                    if !temp.connections.contains(dot) &&
+						!blockedLines.contains(where: {
+						$0.isEqual(to: Line(fromDot: dot, toDot: temp)) }) {
                             result.insert(temp, at: 0)
                     }
                 }
@@ -88,8 +97,7 @@ class Board: NSObject {
         }
         return result.filter { $0 != dot && $0.type != .outside }
     }
-    
-    
+	
     // Create border
     
     func createBorderLine() {
@@ -116,7 +124,7 @@ class Board: NSObject {
             if line.diagonal != .none {
                 let mirrorLine = line.mirrorLine
                 
-                if dots.contains(where: { $0 == mirrorLine.fromDot } ) && dots.contains(where: { $0 == mirrorLine.toDot } ) {
+                if dots.contains(where: { $0 == mirrorLine.fromDot }) && dots.contains(where: { $0 == mirrorLine.toDot }) {
                     blockedLines.insert(mirrorLine)
                 }
             }
@@ -126,17 +134,8 @@ class Board: NSObject {
                 figures = figures.filter { !isFigureIntersectsWithExistedFigures($0) }
                 if figures.count != 0 { addFigures(figures) }
             }
-//            analizeFigures(from: firstDot, to: secondDot)
         }
     }
-    
-//    func analizeFigures(from startDot: Dot, to finishDot: Dot) {
-//        print(finishDot.connections.count)
-//        print(startDot.connections.count)
-//        if  {
-//            print("finding figure")
-//        }
-//    }
     
     func getRows() -> [[Dot]] {
         var result = [[Dot]]()
@@ -165,12 +164,11 @@ class Board: NSObject {
         let dotSecond = previousDot
         var figures = [Figure]()
         
-        for dotThird in dotSecond.connections  {
+        for dotThird in dotSecond.connections {
             if dotThird.connections.count != 0 && !(dotThird == dotFirst) {
                 for dotFourth in dotThird.connections {
                     if dotFourth.connections.count != 0 && !(dotFourth == dotSecond) {
-                        if dotFourth == dotFirst {
-//                            print("Малий трикутник!")
+                        if dotFourth == dotFirst { // small triangle
                             let figure = Figure(line: Line(fromDot: dotFirst, toDot: dotSecond))
                             figure.add(line: Line(fromDot: dotSecond, toDot: dotThird))
                             figure.add(line: Line(fromDot: dotThird, toDot: dotFirst))
@@ -178,17 +176,14 @@ class Board: NSObject {
                                 figures.append(figure)
                             }
                         } else {
-                            for dotFift in dotFourth.connections {
-                                if dotFift == dotFirst {
-//                                    print("Якийсь чотирикутник або великий трикутник!")
-                                    let figure = Figure(line: Line(fromDot: dotFirst, toDot: dotSecond))
-                                    figure.add(line: Line(fromDot: dotSecond, toDot: dotThird))
-                                    figure.add(line: Line(fromDot: dotThird, toDot: dotFourth))
-                                    figure.add(line: Line(fromDot: dotFourth, toDot: dotFirst))
-                                    if figure.finishFigure() {
-                                        figures.append(figure)
-                                    }
-                                }
+							for dotFift in dotFourth.connections where dotFift == dotFift { // big triangle or quadrangle
+								let figure = Figure(line: Line(fromDot: dotFirst, toDot: dotSecond))
+								figure.add(line: Line(fromDot: dotSecond, toDot: dotThird))
+								figure.add(line: Line(fromDot: dotThird, toDot: dotFourth))
+								figure.add(line: Line(fromDot: dotFourth, toDot: dotFirst))
+								if figure.finishFigure() {
+									figures.append(figure)
+								}
                             }
                         }
                     }
@@ -197,26 +192,10 @@ class Board: NSObject {
         }
         
         return figures
-//        for (index, newFigure) in startedFigures.enumerated() {
-//            print(newFigure.type)
-//            if startedFigures.count > 1 {
-//                if !figures.contains(where: { oldFigure in
-//                    return oldFigure.isIntersectsWith(figure: newFigure)
-//                }) {
-//                    addFigure(newFigure)
-//                    print("index = ", index)
-//                    if index == startedFigures.count {
-//                        checkForEndGame()
-//                    }
-//                }
-//            } else {
-//                addFigure(newFigure)
-//            }
-//        }
     }
     
     func isFigureIntersectsWithExistedFigures(_ figure: Figure) -> Bool {
-        if figure.type! != .triangle  {
+        if figure.type! != .triangle {
             let nearbyFigures = figures.filter({ figure.cgRect!.intersects($0.cgRect!) })
             if nearbyFigures.count > 0 {
                 for nearbyFigure in nearbyFigures {

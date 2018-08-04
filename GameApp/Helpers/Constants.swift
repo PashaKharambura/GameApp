@@ -10,6 +10,4 @@ class Constants {
 	static let boardWidth = 12
 	static let boardHeight = 12
 	
-	
 }
-

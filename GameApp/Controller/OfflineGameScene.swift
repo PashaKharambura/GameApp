@@ -48,8 +48,10 @@ class OfflineGameScene: GameScene {
     }
     
     func setupLabels() {
-        let p1Name = self.childNode(withName: "Player1") as! SKLabelNode
-        let p2Name = self.childNode(withName: "Player2") as! SKLabelNode
+        guard
+			let p1Name = self.childNode(withName: "Player1") as? SKLabelNode,
+			let p2Name = self.childNode(withName: "Player2") as? SKLabelNode
+		else { return }
         
         playersInfo = [PlayerInfo(nameLabel: p1Name), PlayerInfo(nameLabel: p2Name)]
         playersInfo[1].line.isHidden = true
@@ -84,6 +86,5 @@ class OfflineGameScene: GameScene {
         super.makeMove(to: finishDot)
         swapActivePlayer()
     }
-    
     
 }

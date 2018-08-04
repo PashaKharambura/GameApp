@@ -36,8 +36,8 @@ class GameModeViewController: CustomViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let nextVC = segue.destination as! SelectLevelViewController
-        nextVC.gameMode = (sender as! UIButton).tag
+        let nextVC = segue.destination as? SelectLevelViewController
+        nextVC?.gameMode = (sender as? UIButton)?.tag ?? 1
     }
     
 }

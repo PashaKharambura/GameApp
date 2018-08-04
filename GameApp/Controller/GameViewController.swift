@@ -17,7 +17,7 @@ class GameViewController: CustomViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-            if let view = self.view as! SKView? {
+            if let view = self.view as? SKView {
 //             Load the SKScene from 'GameScene.sks'
                 var gameSceneClass: SKScene.Type
 

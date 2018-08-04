@@ -77,20 +77,18 @@ class GameScene: SKScene, BoardDelegate {
         startX = delta/2
         startY = (scene?.frame.midY)! - CGFloat(Constants.boardHeight)/2 * delta
     
-        for dot in board.dots {
-            if dot.type != .outside {
-                var color: UIColor
-                if dot.type == .border {
-                    color = .black
-                } else {
-                    color = .gray
-                }
-                let pos = position(for: dot.column, and: dot.row)
-                let dotNode = DotNode(circleOfRadius: 3, at: pos, and: color, tapAreaRaduis: delta/2, index: dot.index)
-                addChild(dotNode.tapArea)
-                
-                dotNodes.append(dotNode)
-            }
+		for dot in board.dots where dot.type != .outside {
+			var color: UIColor
+			if dot.type == .border {
+				color = .black
+			} else {
+				color = .gray
+			}
+			let pos = position(for: dot.column, and: dot.row)
+			let dotNode = DotNode(circleOfRadius: 3, at: pos, and: color, tapAreaRaduis: delta/2, index: dot.index)
+			addChild(dotNode.tapArea)
+			
+			dotNodes.append(dotNode)
         }
     }
     
@@ -172,7 +170,7 @@ class GameScene: SKScene, BoardDelegate {
 
     // Make array of available dots for connecting with selected dot
     
-    func fillAvailableDotsFrom(dots: [Dot], callback: @escaping ()->()) {
+    func fillAvailableDotsFrom(dots: [Dot], callback: @escaping () -> Void) {
         availableDots = getNodesFrom(dots: dots)
         if availableDots!.count != 0 {
             callback()

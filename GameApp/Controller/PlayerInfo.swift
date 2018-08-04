@@ -12,11 +12,11 @@ import SpriteKit
 class PlayerInfo: NSObject {
     
     var nameLabel: SKLabelNode
-    var scoreLabel: SKLabelNode {
-        return nameLabel.childNode(withName: "Score") as! SKLabelNode
+    var scoreLabel: SKLabelNode! {
+        return nameLabel.childNode(withName: "Score") as? SKLabelNode
     }
-    var line: SKSpriteNode {
-        return nameLabel.childNode(withName: "Line") as! SKSpriteNode
+    var line: SKSpriteNode! {
+        return nameLabel.childNode(withName: "Line") as? SKSpriteNode
     }
 
     init(nameLabel: SKLabelNode) {

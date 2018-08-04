@@ -1,0 +1,17 @@
+disabled_rules:
+- trailing_whitespace
+
+line_length:
+ warning: 140
+
+identifier_name:
+ excluded:
+  - x
+  - y
+  - i
+  - j
+
+attributes:
+always_on_same_line: ["@IBAction", "@IBOutlet", "@IBInspectable"]
+always_on_line_above: ["@IBInspectable", "@UIApplicationMain", "@discardableResult", "@objc"]
+
