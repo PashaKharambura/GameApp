@@ -73,9 +73,9 @@ class GameScene: SKScene, BoardDelegate {
     // Make field dots
     
     func generateLevelBackground() {
-        delta = ((scene?.frame.maxX)!)/CGFloat(Constants.boardWidth)
+        delta = ((scene?.frame.maxX)!)/CGFloat(Constants.Board.width)
         startX = delta/2
-        startY = (scene?.frame.midY)! - CGFloat(Constants.boardHeight)/2 * delta
+        startY = (scene?.frame.midY)! - CGFloat(Constants.Board.height)/2 * delta
     
 		for dot in board.dots where dot.type != .outside {
 			var color: UIColor

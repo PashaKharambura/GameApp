@@ -15,79 +15,63 @@
             <rect key="frame" x="0.0" y="0.0" width="286" height="317"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Main Menu" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uyd-Sx-KFI">
-                    <rect key="frame" x="67" y="0.0" width="152" height="47"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="152" id="R26-NZ-hZs"/>
-                        <constraint firstAttribute="height" constant="47" id="y9x-eA-QcY"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="25"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fqy-cU-MWX" customClass="MenuButton" customModule="GameApp" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="73" width="286" height="40"/>
-                    <color key="backgroundColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="40" placeholder="YES" id="ujm-Be-bXz"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="17"/>
-                    <state key="normal" title="Play">
-                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    </state>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                            <real key="value" value="20"/>
-                        </userDefinedRuntimeAttribute>
-                    </userDefinedRuntimeAttributes>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GGJ-S0-zJy" customClass="MenuButton" customModule="GameApp" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="143" width="286" height="40"/>
-                    <color key="backgroundColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="40" placeholder="YES" id="zcY-uq-J9d"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="17"/>
-                    <state key="normal" title="Options">
-                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    </state>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                            <real key="value" value="20"/>
-                        </userDefinedRuntimeAttribute>
-                    </userDefinedRuntimeAttributes>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mL7-fB-XTr" customClass="MenuButton" customModule="GameApp" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="213" width="286" height="40"/>
-                    <color key="backgroundColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="40" placeholder="YES" id="Z4w-8P-N4e"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="17"/>
-                    <state key="normal" title="Ranking">
-                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    </state>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                            <real key="value" value="20"/>
-                        </userDefinedRuntimeAttribute>
-                    </userDefinedRuntimeAttributes>
-                </button>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="L1D-80-HLL">
+                    <rect key="frame" x="0.0" y="0.0" width="286" height="179"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Main Menu" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uyd-Sx-KFI">
+                            <rect key="frame" x="0.0" y="0.0" width="286" height="31.5"/>
+                            <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="25"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fqy-cU-MWX" customClass="MenuButton" customModule="GameApp" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="49.5" width="286" height="31"/>
+                            <color key="backgroundColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="17"/>
+                            <state key="normal" title="Play">
+                                <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                    <real key="value" value="20"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GGJ-S0-zJy" customClass="MenuButton" customModule="GameApp" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="98.5" width="286" height="31.5"/>
+                            <color key="backgroundColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="17"/>
+                            <state key="normal" title="Options">
+                                <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                    <real key="value" value="20"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mL7-fB-XTr" customClass="MenuButton" customModule="GameApp" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="148" width="286" height="31"/>
+                            <color key="backgroundColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="17"/>
+                            <state key="normal" title="Ranking">
+                                <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                    <real key="value" value="20"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </button>
+                    </subviews>
+                </stackView>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="s3B-di-7dV" firstAttribute="trailing" secondItem="fqy-cU-MWX" secondAttribute="trailing" id="2h0-tA-5a1"/>
-                <constraint firstItem="mL7-fB-XTr" firstAttribute="top" secondItem="GGJ-S0-zJy" secondAttribute="bottom" constant="30" id="8Rk-Mj-fvN"/>
-                <constraint firstItem="Uyd-Sx-KFI" firstAttribute="top" secondItem="s3B-di-7dV" secondAttribute="top" id="G3b-KG-mTk"/>
-                <constraint firstItem="Uyd-Sx-KFI" firstAttribute="centerX" secondItem="NJz-Y5-M2j" secondAttribute="centerX" id="IIT-Q9-pNj"/>
-                <constraint firstItem="s3B-di-7dV" firstAttribute="trailing" secondItem="mL7-fB-XTr" secondAttribute="trailing" id="JGo-jI-cnd"/>
-                <constraint firstItem="fqy-cU-MWX" firstAttribute="top" secondItem="Uyd-Sx-KFI" secondAttribute="bottom" constant="26" id="JRa-Uf-L6T"/>
-                <constraint firstItem="mL7-fB-XTr" firstAttribute="leading" secondItem="s3B-di-7dV" secondAttribute="leading" id="Q1L-0W-CYM"/>
-                <constraint firstItem="s3B-di-7dV" firstAttribute="trailing" secondItem="GGJ-S0-zJy" secondAttribute="trailing" id="VmM-XE-b24"/>
-                <constraint firstItem="GGJ-S0-zJy" firstAttribute="leading" secondItem="s3B-di-7dV" secondAttribute="leading" id="XAS-yA-oJF"/>
-                <constraint firstItem="GGJ-S0-zJy" firstAttribute="top" secondItem="fqy-cU-MWX" secondAttribute="bottom" constant="30" id="azf-Fs-900"/>
-                <constraint firstItem="s3B-di-7dV" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="mL7-fB-XTr" secondAttribute="bottom" id="dfG-rf-rfH"/>
-                <constraint firstItem="fqy-cU-MWX" firstAttribute="leading" secondItem="s3B-di-7dV" secondAttribute="leading" id="iuN-SM-ZL3"/>
+                <constraint firstItem="s3B-di-7dV" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="L1D-80-HLL" secondAttribute="bottom" id="0UA-UT-rGv"/>
+                <constraint firstItem="L1D-80-HLL" firstAttribute="leading" secondItem="NJz-Y5-M2j" secondAttribute="leading" id="5yC-53-T5e"/>
+                <constraint firstItem="s3B-di-7dV" firstAttribute="trailing" secondItem="L1D-80-HLL" secondAttribute="trailing" id="LQj-Lv-SGQ"/>
+                <constraint firstItem="L1D-80-HLL" firstAttribute="top" secondItem="s3B-di-7dV" secondAttribute="top" id="etE-6s-v0S"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="s3B-di-7dV"/>
@@ -98,7 +82,7 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Play" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c3h-aI-aiW">
-                    <rect key="frame" x="67" y="10" width="152" height="47"/>
+                    <rect key="frame" x="67" y="0.0" width="152" height="47"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="47" id="CTO-l1-cqd"/>
                         <constraint firstAttribute="width" constant="152" id="JXS-RH-4gt"/>
@@ -108,7 +92,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="krE-Ma-6OB" customClass="MenuButton" customModule="GameApp" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="83" width="286" height="40"/>
+                    <rect key="frame" x="0.0" y="73" width="286" height="40"/>
                     <color key="backgroundColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" placeholder="YES" id="C7z-Id-sUq"/>
@@ -124,7 +108,7 @@
                     </userDefinedRuntimeAttributes>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="45p-8k-Yoo" customClass="MenuButton" customModule="GameApp" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="223" width="286" height="40"/>
+                    <rect key="frame" x="0.0" y="213" width="286" height="40"/>
                     <color key="backgroundColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" placeholder="YES" id="amJ-2u-Bwm"/>
@@ -140,7 +124,7 @@
                     </userDefinedRuntimeAttributes>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D8i-LU-ryq" customClass="MenuButton" customModule="GameApp" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="153" width="286" height="40"/>
+                    <rect key="frame" x="0.0" y="143" width="286" height="40"/>
                     <color key="backgroundColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" placeholder="YES" id="g18-Df-nol"/>

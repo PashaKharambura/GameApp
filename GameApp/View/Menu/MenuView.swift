@@ -13,8 +13,12 @@ import UIKit
     var contentView: UIView!
     
 	var buttons: [MenuButton]! {
-        return contentView.subviews.filter { $0 is MenuButton } as? [MenuButton]
+        return stackView.subviews.filter { $0 is MenuButton } as? [MenuButton]
     }
+	
+	var stackView: UIStackView! {
+		return contentView.subviews.first(where: { $0 is UIStackView }) as? UIStackView
+	}
     
     static var allMenuViews: [UIView]! {
         let bundle = Bundle(for: MenuView.self)
@@ -50,6 +54,8 @@ import UIKit
 		contentView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
 		contentView.widthAnchor.constraint(equalTo: widthAnchor).isActive = true
 		contentView.heightAnchor.constraint(equalTo: heightAnchor).isActive = true
+		
+		stackView.spacing = Constants.Grid.cellSize
     }
     
     func loadFromNib() -> UIView! {

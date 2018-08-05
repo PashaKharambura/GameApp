@@ -32,9 +32,14 @@ import UIKit
 		setupView()
 	}
 	
+	func setFrame(_ frame: CGRect) {
+		self.frame = frame
+		setupView()
+	}
+	
 	private func setupView() {
-		heightAnchor.constraint(equalToConstant: Constants.cellSize).isActive = true
-		layer.cornerRadius = Constants.cellSize/2
+		heightAnchor.constraint(equalToConstant: Constants.Grid.cellSize).isActive = true
+		layer.cornerRadius = Constants.Grid.cellSize/2
 		titleLabel?.font = UIFont(name: fontName, size: fontSize)!
 		backgroundColor = #colorLiteral(red: 0.4078193307, green: 0.4078193307, blue: 0.4078193307, alpha: 1)
 		setTitleColor(.white, for: .normal)

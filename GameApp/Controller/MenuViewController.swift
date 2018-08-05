@@ -11,13 +11,23 @@ import UIKit
 class MenuViewController: CustomViewController {
     @IBOutlet private weak var menuView: MenuView!
 	@IBOutlet private weak var menuWidth: NSLayoutConstraint!
+	@IBOutlet private weak var paperWarsYPosition: NSLayoutConstraint!
+	@IBOutlet private weak var paperWarsHeight: NSLayoutConstraint!
+	@IBOutlet private weak var mainMenuSpacingToPaperWars: NSLayoutConstraint!
 	private var menuViewsContent = [UIView]()
     
-    override func viewDidLoad() {
+	fileprivate func setupConstraints() {
+		menuWidth.constant = Constants.Grid.cellSize * 9
+		paperWarsYPosition.constant = Constants.Grid.firstLineY + Constants.Grid.cellSize
+		paperWarsHeight.constant = Constants.Grid.cellSize
+		mainMenuSpacingToPaperWars.constant = Constants.Grid.cellSize
+	}
+	
+	override func viewDidLoad() {
         super.viewDidLoad()
-		menuWidth.constant = Constants.cellSize*9
+		setupConstraints()
         menuViewsContent.append(menuView.contentView)
-        menuView.buttons.forEach { $0.addTarget(self, action: #selector(MenuViewController.buttonTapped), for: .touchUpInside) }
+        menuView.buttons.forEach { $0.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside) }
     }
     
     private func presentMenuView(_ newMenuView: UIView) {
@@ -41,7 +51,8 @@ class MenuViewController: CustomViewController {
 		guard let lastMenuButton = menuView.subviews
 			.sorted(by: { $0.frame.origin.y > $1.frame.origin.y })
 			.first else { return }
-		let backButton = MenuButton(frame: lastMenuButton.bounds)
+		let backButton = MenuButton(type: .system)
+		backButton.setFrame(lastMenuButton.frame)
 		backButton.setTitle("Back", for: .normal)
 		menuView.addSubview(backButton)
 		
@@ -51,10 +62,10 @@ class MenuViewController: CustomViewController {
 		backButton.rightAnchor.constraint(equalTo: lastMenuButton.rightAnchor).isActive = true
 		backButton.topAnchor.constraint(equalTo: lastMenuButton.bottomAnchor, constant: 30).isActive = true
 		
-		backButton.addTarget(self, action: #selector(MenuViewController.backButtonTapped), for: .touchUpInside)
+		backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
 	}
 	
-	@objc func buttonTapped(sender: UIButton) {
+	@objc private func buttonTapped(sender: UIButton) {
 		guard let selectedMenu = MenuView.allMenuViews.first(where: {
 			$0.restorationIdentifier == sender.titleLabel?.text?.lowercased()
 		}) else {
@@ -64,7 +75,7 @@ class MenuViewController: CustomViewController {
 		presentMenuView(selectedMenu)
 	}
 	
-	@objc func backButtonTapped(sender: UIButton) {
+	@objc private func backButtonTapped(sender: UIButton) {
 		guard
 			let currentMenuView = menuViewsContent.last,
 			let prevMenuView = menuViewsContent[safe: menuViewsContent.count - 2] else { return }
