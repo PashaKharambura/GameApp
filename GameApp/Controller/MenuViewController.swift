@@ -25,11 +25,13 @@ class MenuViewController: CustomViewController {
         menuView.addSubview(newMenuView)
 		addBackButtonTo(menuView: newMenuView)
         let deltaX = view.frame.maxX
-		newMenuView.frame = prevView.frame
-        newMenuView.center.x += deltaX
+		newMenuView.frame = CGRect(x: deltaX,
+								   y: prevView.frame.origin.y,
+								   width: prevView.frame.width,
+								   height: prevView.frame.height)
 		UIView.animate(withDuration: 0.5, animations: {
-            prevView.center.x -= deltaX
-            newMenuView.frame.origin.x -= deltaX
+            prevView.transform = CGAffineTransform(translationX: -deltaX, y: 0)
+            newMenuView.transform = CGAffineTransform(translationX: -deltaX, y: 0)
 		}, completion: { _ in
 			self.menuViewsContent.append(newMenuView)
 		})
@@ -49,30 +51,26 @@ class MenuViewController: CustomViewController {
 		backButton.rightAnchor.constraint(equalTo: lastMenuButton.rightAnchor).isActive = true
 		backButton.topAnchor.constraint(equalTo: lastMenuButton.bottomAnchor, constant: 30).isActive = true
 		
-		print("adding targer to \(backButton)")
-		print(backButton.titleLabel?.text)
 		backButton.addTarget(self, action: #selector(MenuViewController.backButtonTapped), for: .touchUpInside)
 	}
 	
 	@objc func buttonTapped(sender: UIButton) {
-		print("buttonTapped")
 		guard let selectedMenu = MenuView.allMenuViews.first(where: {
 			$0.restorationIdentifier == sender.titleLabel?.text?.lowercased()
-		}) else { print("cannot find selected menu")
+		}) else {
+			print("cannot find selected menu")
 			return
 		}
 		presentMenuView(selectedMenu)
 	}
 	
 	@objc func backButtonTapped(sender: UIButton) {
-		print("back tapped")
 		guard
 			let currentMenuView = menuViewsContent.last,
 			let prevMenuView = menuViewsContent[safe: menuViewsContent.count - 2] else { return }
-		let deltaX = view.frame.maxX
 		UIView.animate(withDuration: 0.5, animations: {
-			currentMenuView.center.x += deltaX
-			prevMenuView.center.x += deltaX
+			currentMenuView.transform = .identity
+			prevMenuView.transform = .identity
 		}, completion: { _ in
 			currentMenuView.removeFromSuperview()
 			self.menuViewsContent.removeLast()

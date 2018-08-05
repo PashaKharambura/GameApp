@@ -49,6 +49,7 @@ import UIKit
 		contentView.topAnchor.constraint(equalTo: topAnchor).isActive = true
 		contentView.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
 		contentView.widthAnchor.constraint(equalTo: widthAnchor).isActive = true
+		contentView.heightAnchor.constraint(equalTo: heightAnchor).isActive = true
     }
     
     func loadFromNib() -> UIView! {
@@ -58,9 +59,5 @@ import UIKit
         
         return view
     }
-	
-	deinit {
-		print("deiniting \(self)")
-	}
     
 }

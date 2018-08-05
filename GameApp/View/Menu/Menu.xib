@@ -41,22 +41,6 @@
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mL7-fB-XTr" customClass="MenuButton" customModule="GameApp" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="213" width="286" height="40"/>
-                    <color key="backgroundColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="40" placeholder="YES" id="Z4w-8P-N4e"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="17"/>
-                    <state key="normal" title="Ranking">
-                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    </state>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                            <real key="value" value="20"/>
-                        </userDefinedRuntimeAttribute>
-                    </userDefinedRuntimeAttributes>
-                </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GGJ-S0-zJy" customClass="MenuButton" customModule="GameApp" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="143" width="286" height="40"/>
                     <color key="backgroundColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -65,6 +49,22 @@
                     </constraints>
                     <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="17"/>
                     <state key="normal" title="Options">
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="20"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mL7-fB-XTr" customClass="MenuButton" customModule="GameApp" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="213" width="286" height="40"/>
+                    <color key="backgroundColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" placeholder="YES" id="Z4w-8P-N4e"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="17"/>
+                    <state key="normal" title="Ranking">
                         <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
                     <userDefinedRuntimeAttributes>
@@ -165,7 +165,7 @@
                 <constraint firstItem="krE-Ma-6OB" firstAttribute="top" secondItem="c3h-aI-aiW" secondAttribute="bottom" constant="26" id="C16-0T-jmB"/>
                 <constraint firstItem="dPN-Oh-kGO" firstAttribute="trailing" secondItem="krE-Ma-6OB" secondAttribute="trailing" id="JJm-VM-iD5"/>
                 <constraint firstItem="dPN-Oh-kGO" firstAttribute="trailing" secondItem="D8i-LU-ryq" secondAttribute="trailing" id="UqA-al-cve"/>
-                <constraint firstItem="c3h-aI-aiW" firstAttribute="top" secondItem="dPN-Oh-kGO" secondAttribute="top" constant="10" id="d3R-UL-aoc"/>
+                <constraint firstItem="c3h-aI-aiW" firstAttribute="top" secondItem="dPN-Oh-kGO" secondAttribute="top" id="d3R-UL-aoc"/>
                 <constraint firstItem="D8i-LU-ryq" firstAttribute="top" secondItem="krE-Ma-6OB" secondAttribute="bottom" constant="30" id="dFD-xZ-hi6"/>
                 <constraint firstItem="45p-8k-Yoo" firstAttribute="top" secondItem="D8i-LU-ryq" secondAttribute="bottom" constant="30" id="iEM-Sh-NeS"/>
                 <constraint firstItem="c3h-aI-aiW" firstAttribute="centerX" secondItem="dPN-Oh-kGO" secondAttribute="centerX" id="jpB-G0-1UU"/>
@@ -180,7 +180,7 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Options" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zrv-TP-aGp">
-                    <rect key="frame" x="111" y="30" width="152" height="47"/>
+                    <rect key="frame" x="111" y="20" width="152" height="47"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="152" id="E4H-TI-9i5"/>
                         <constraint firstAttribute="height" constant="47" id="Tmx-ez-6Zx"/>
@@ -190,7 +190,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="In development..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hYE-65-xcT">
-                    <rect key="frame" x="0.0" y="103" width="375" height="40"/>
+                    <rect key="frame" x="0.0" y="93" width="375" height="40"/>
                     <color key="backgroundColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="bdM-aD-cxn"/>
@@ -205,7 +205,7 @@
                 <constraint firstItem="hYE-65-xcT" firstAttribute="top" secondItem="zrv-TP-aGp" secondAttribute="bottom" constant="26" id="3oN-C5-SU8"/>
                 <constraint firstItem="zrv-TP-aGp" firstAttribute="centerX" secondItem="vk7-9r-pa5" secondAttribute="centerX" id="TnY-qL-h3V"/>
                 <constraint firstItem="hYE-65-xcT" firstAttribute="leading" secondItem="vk7-9r-pa5" secondAttribute="leading" id="UlF-rd-mEz"/>
-                <constraint firstItem="zrv-TP-aGp" firstAttribute="top" secondItem="vk7-9r-pa5" secondAttribute="top" constant="10" id="fCX-VM-BJI"/>
+                <constraint firstItem="zrv-TP-aGp" firstAttribute="top" secondItem="vk7-9r-pa5" secondAttribute="top" id="fCX-VM-BJI"/>
                 <constraint firstItem="vk7-9r-pa5" firstAttribute="trailing" secondItem="hYE-65-xcT" secondAttribute="trailing" id="tpV-wB-cvY"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="vk7-9r-pa5"/>
@@ -216,7 +216,7 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="In development..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fTh-TE-Aa6">
-                    <rect key="frame" x="0.0" y="103" width="375" height="40"/>
+                    <rect key="frame" x="0.0" y="93" width="375" height="40"/>
                     <color key="backgroundColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="idM-jA-Ylf"/>
@@ -226,7 +226,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ranking" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SUe-Kh-F5e">
-                    <rect key="frame" x="111.5" y="30" width="152" height="47"/>
+                    <rect key="frame" x="111.5" y="20" width="152" height="47"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="152" id="Vp2-hz-HP4"/>
                         <constraint firstAttribute="height" constant="47" id="avj-yd-qUY"/>
@@ -238,7 +238,7 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="SUe-Kh-F5e" firstAttribute="top" secondItem="Tvy-Up-Epj" secondAttribute="top" constant="10" id="F4A-29-lTi"/>
+                <constraint firstItem="SUe-Kh-F5e" firstAttribute="top" secondItem="Tvy-Up-Epj" secondAttribute="top" id="F4A-29-lTi"/>
                 <constraint firstItem="SUe-Kh-F5e" firstAttribute="centerX" secondItem="Tvy-Up-Epj" secondAttribute="centerX" id="Hb1-aJ-moZ"/>
                 <constraint firstItem="fTh-TE-Aa6" firstAttribute="leading" secondItem="Tvy-Up-Epj" secondAttribute="leading" id="Juz-bO-mDo"/>
                 <constraint firstItem="Tvy-Up-Epj" firstAttribute="trailing" secondItem="fTh-TE-Aa6" secondAttribute="trailing" id="aOP-6t-EXC"/>

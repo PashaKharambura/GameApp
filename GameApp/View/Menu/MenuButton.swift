@@ -40,7 +40,4 @@ import UIKit
 		setTitleColor(.white, for: .normal)
 	}
 	
-	deinit {
-		print("deiniting \(self) with text \(titleLabel?.text)")
-	}
 }
